@@ -1,0 +1,1 @@
+-l"./configPkg/linker.cmd" "./udpHello.obj" "./resourcemgr.obj" "./platform_osal.obj" "./helloWorld.obj" "./ImageTable.obj" "./Disparity.obj" -l"libc.a" -l"F:\ti\mathlib_c66x_3_0_1_1\lib\mathlib.ae66" 
