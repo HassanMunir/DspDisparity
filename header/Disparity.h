@@ -15,6 +15,6 @@ typedef struct stereo {
 	uint8_t* Right;
 } StereoImage;
 
-uint8_t* GetDisparityMap(StereoImage* image, int width, int height);
+uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int max_disp);
 double NCC(uint8_t* templateToMatch, uint8_t* regionToMatch, int winx, int winy);
 #endif /* DISPARITY_H_ */

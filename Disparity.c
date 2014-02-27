@@ -5,21 +5,23 @@
 
 #include <mathlib.h>
 #include <ti/omp/omp.h>
+#include <xdc/runtime/Memory.h>
+
 
 //uint8_t disparityMap[COLS * ROWS];
-uint8_t disparityMap[960 * 279];
 
 // i, y, v refer to rows
 // j, x, u refer to cols
-uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height){
+uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int max_disp){
+
+	uint8_t* disparityMap = Memory_alloc(NULL,  (height*width), 0, NULL);
+
 #if PRINT_DETAILS == 1
 	printf("Get Disparity Map called\n");
 #endif
 
 	int winx = WIN - 1;
 	int winy = (WIN- 1)/2;
-
-
 
 	uint8_t template[WIN * ((2 * WIN) - 1)];
 	uint8_t matchRegion[WIN * ((2 * WIN) - 1)];
@@ -43,7 +45,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height){
 		int bestMatchSoFar = 0;
 
 		//This is where parallel processing starts
-		for(j = 1 + winx; j < width - winx - MAX_DISP ; j++)
+		for(j = 1 + winx; j < width - winx - max_disp ; j++)
 		{
 			int jWinStr = j - winx;
 			int jWinEnd = j + winx;
@@ -69,7 +71,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height){
 				prevCorr = 0.0;
 				bestMatchSoFar = 0;
 
-				for(k = MIN_DISP; k < MAX_DISP; k++)
+				for(k = MIN_DISP; k < max_disp; k++)
 				{
 					//Get the left region (the region that will be matched with the template
 					x = 0 ; y = 0 ; u = 0; v = 0;
@@ -99,7 +101,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height){
 
 				for(k = 0; k < 9; k++)
 				{
-					if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < MAX_DISP)
+					if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < max_disp)
 					{
 						//Get the left region (the region that will be matched with the template
 						x = 0 ; y = 0 ; u = 0; v = 0;

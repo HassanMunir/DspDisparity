@@ -26,7 +26,7 @@
 #include <xdc/runtime/Types.h>
 #include <xdc/runtime/Timestamp.h>
 
-#define TCP_BUFSIZE 1344
+#define TCP_BUFSIZE 1500
 //#define TCP_BUFSIZE 960
 #define UDP_BUFSIZ 1020
 #define UDP_BUFSIZ_recv 1020
@@ -36,11 +36,11 @@ int SendImage(SOCKET s, uint8_t* image, int size);
 int ByteArrayToInt32(void* array, int length);
 uint8_t* RecieveImage(SOCKET s, int filesize);
 StereoImage RecieveStereoImage(SOCKET s, int filesize);
-int SendCalculatedImageDimension(SOCKET s, int dim);
+int SendInt32(SOCKET s, int dim);
 
 int g_transmissionError = 0;
 
-int GetImageDimension(SOCKET s) {
+int ReceiveInt32(SOCKET s) {
 	int dimension, bytesReceived;
 	uint8_t buffer[4];
 	bytesReceived = recv(s, buffer, 4, 0);
@@ -56,7 +56,7 @@ int GetImageDimension(SOCKET s) {
 int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	struct timeval to;
 	char *message = malloc(sizeof(char) * 50);
-	to.tv_sec = 5;
+	to.tv_sec = 3;
 	to.tv_usec = 0;
 
 	g_transmissionError = 0;
@@ -66,9 +66,10 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 
 	while(1)
 	{
-		int height, width;
-		height = GetImageDimension(s);
-		width = GetImageDimension(s);
+		int height, width, disparity;
+		height = ReceiveInt32(s);
+		width = ReceiveInt32(s);
+		disparity = ReceiveInt32(s);
 
 		if(g_transmissionError == 1)
 			break;
@@ -84,27 +85,25 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 
 		int bytesSent = 0;
 
-
 		//CALCULATIONS
 
 		Types_FreqHz freq;
 
-			Timestamp_getFreq(&freq);
+		Timestamp_getFreq(&freq);
 
 		uint32_t start = Timestamp_get32();
 
-		uint8_t* image = GetDisparityMap(&images, width, height);
+		uint8_t* image = GetDisparityMap(&images, width, height,disparity);
 
 		uint32_t end = Timestamp_get32();
 
 		printf("[%f s]\n", (double)end/freq.lo);
 
 		printf("Sending disparity map dimensions..\n");
-		bytesSent = SendCalculatedImageDimension(s, height);
-		bytesSent += SendCalculatedImageDimension(s, width);
+		bytesSent = SendInt32(s, height);
+		bytesSent += SendInt32(s, width);
 		if(bytesSent > 0)
 			printf("Sent disparity map dimensions [%d bytes]\n", bytesSent);
-
 
 		printf("Sending disparity map..\n");
 		bytesSent = SendImage(s, image, filesize);
@@ -190,7 +189,7 @@ int SendRequestForDimensions(SOCKET s)
 	return bytesSent;
 }
 
-int SendCalculatedImageDimension(SOCKET s, int dim)
+int SendInt32(SOCKET s, int dim)
 {
 	int buffer[1];
 	buffer[0] = dim;
