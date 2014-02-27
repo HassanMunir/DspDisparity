@@ -286,6 +286,7 @@ RecieveImage.obj: C:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss/qmss_osal.h
 RecieveImage.obj: C:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/pa/pa.h
 RecieveImage.obj: C:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdlib.h
 RecieveImage.obj: C:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/pa/paver.h
+RecieveImage.obj: C:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Types.h
 RecieveImage.obj: C:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Timestamp.h
 RecieveImage.obj: C:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Types.h
 RecieveImage.obj: C:/ti/xdctools_3_25_04_88/packages/xdc/runtime/ITimestampProvider.h
@@ -586,6 +587,7 @@ C:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss/qmss_osal.h:
 C:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/pa/pa.h: 
 C:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdlib.h: 
 C:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/pa/paver.h: 
+C:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Timestamp.h: 
 C:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_25_04_88/packages/xdc/runtime/ITimestampProvider.h: 

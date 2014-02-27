@@ -23,11 +23,11 @@
 /* Resource manager for QMSS, PA, CPPI */
 #include "ti/platform/resource_mgr.h"
 
-
+#include <xdc/runtime/Types.h>
 #include <xdc/runtime/Timestamp.h>
 
-//#define TCP_BUFSIZE 1344
-#define TCP_BUFSIZE 960
+#define TCP_BUFSIZE 1344
+//#define TCP_BUFSIZE 960
 #define UDP_BUFSIZ 1020
 #define UDP_BUFSIZ_recv 1020
 
@@ -82,17 +82,40 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 		if(g_transmissionError == 1)
 			break;
 
+		int bytesSent = 0;
+
+
 		//CALCULATIONS
+
+		Types_FreqHz freq;
+
+			Timestamp_getFreq(&freq);
+
+		uint32_t start = Timestamp_get32();
+
 		uint8_t* image = GetDisparityMap(&images, width, height);
 
+		uint32_t end = Timestamp_get32();
+
+		printf("[%f s]\n", (double)end/freq.lo);
+
+		printf("Sending disparity map dimensions..\n");
+		bytesSent = SendCalculatedImageDimension(s, height);
+		bytesSent += SendCalculatedImageDimension(s, width);
+		if(bytesSent > 0)
+			printf("Sent disparity map dimensions [%d bytes]\n", bytesSent);
+
+
 		printf("Sending disparity map..\n");
-		int bytesSent = SendImage(s, image, filesize);
+		bytesSent = SendImage(s, image, filesize);
 		if(bytesSent > 0)
 			printf("Sent disparity map [%d bytes]\n", bytesSent);
 
 		Memory_free(NULL, images.Left, filesize);
 		Memory_free(NULL, images.Right, filesize);
 	}
+
+	printf("Connection closed\n");
 
 	fdClose(s);
 	return -1;
@@ -169,11 +192,11 @@ int SendRequestForDimensions(SOCKET s)
 
 int SendCalculatedImageDimension(SOCKET s, int dim)
 {
-	char buffer[4];
-	*((int*)buffer) = dim;
+	int buffer[1];
+	buffer[0] = dim;
 
 	int bytesSent = 0;
-	bytesSent = send(s, buffer, 4, 0);
+	bytesSent = send(s, buffer, sizeof(buffer), 0);
 	return bytesSent;
 }
 

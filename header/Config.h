@@ -8,7 +8,7 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-#define MAX_DISP	200
+#define MAX_DISP	100
 #define MIN_DISP	0
 
 

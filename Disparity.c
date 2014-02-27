@@ -23,6 +23,8 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height){
 
 	uint8_t template[WIN * ((2 * WIN) - 1)];
 	uint8_t matchRegion[WIN * ((2 * WIN) - 1)];
+	int disparitiesToSearch[9];
+
 
 	int k = 0;
 	int i,j;
@@ -43,10 +45,6 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height){
 		//This is where parallel processing starts
 		for(j = 1 + winx; j < width - winx - MAX_DISP ; j++)
 		{
-
-			int disparitiesToSearch[9];
-
-
 			int jWinStr = j - winx;
 			int jWinEnd = j + winx;
 
@@ -127,18 +125,18 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height){
 				disparityMap[i*width + j] =  (uint8_t) bestMatchSoFar;
 			}
 
-			disparitiesToSearch[0] =  (uint32_t) disparityMap[ ((i + 1 )* width) + j] - 1;
-			disparitiesToSearch[3] =  (uint32_t) disparityMap[ ((i + 1 ) * width) + (j - 1)] - 1;
-			disparitiesToSearch[6] =  (uint32_t) disparityMap[ ((i + 1 ) * width) + (j + 1)] - 1;
+			disparitiesToSearch[0] =   disparityMap[ ((i + 1 )* width) + j] - 1;
+			disparitiesToSearch[3] =   disparityMap[ ((i + 1 ) * width) + (j - 1)] - 1;
+			disparitiesToSearch[6] =   disparityMap[ ((i + 1 ) * width) + (j + 1)] - 1;
 
-			disparitiesToSearch[1] =  (uint32_t) disparitiesToSearch[0] + 1;
-			disparitiesToSearch[2] = (uint32_t)  disparitiesToSearch[0] + 2;
+			disparitiesToSearch[1] =   disparitiesToSearch[0] + 1;
+			disparitiesToSearch[2] =  disparitiesToSearch[0] + 2;
 
-			disparitiesToSearch[4] = (uint32_t)  disparitiesToSearch[3] + 1;
-			disparitiesToSearch[5] = (uint32_t)  disparitiesToSearch[3] + 2;
+			disparitiesToSearch[4] =  disparitiesToSearch[3] + 1;
+			disparitiesToSearch[5] =   disparitiesToSearch[3] + 2;
 
-			disparitiesToSearch[7] = (uint32_t)  disparitiesToSearch[6] + 1;
-			disparitiesToSearch[8] =  (uint32_t) disparitiesToSearch[6] + 2;
+			disparitiesToSearch[7] =   disparitiesToSearch[6] + 1;
+			disparitiesToSearch[8] =  disparitiesToSearch[6] + 2;
 		}
 #if PRINT_DETAILS == 1
 		printf("Row %d processed\n", i);
