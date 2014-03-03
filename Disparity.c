@@ -26,16 +26,16 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 	printf("Get Disparity Map called\n");
 #endif
 
-	int winx = WIN - 1;
+	int winx = WIN ;
 	int winy = (WIN- 1)/2;
 
 	g_winx = winx;
-		g_winy = winy;
-		g_max_disp = max_disp;
-		g_width = width;
-		g_height = height;
+	g_winy = winy;
+	g_max_disp = max_disp;
+	g_width = width;
+	g_height = height;
 
-	uint8_t template[WIN * ((2 * WIN) - 1)];
+	uint8_t template[WIN * (WIN-1)];
 	int disparitiesToSearch[9];
 
 	int k = 0;
@@ -45,22 +45,22 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 
 	for(i = height - winy; i > winy; i--)
 	{
-		int iWinStart = i - winy;
-		int iWinEnd = i + winy;
+		int iWinStart = i - ((winy-1)/2);
+		int iWinEnd = i + ((winy-1)/2);
 
 		//This is where parallel processing starts
-		for(j = 1 + winx; j < width - winx - max_disp ; j++)
+		for(j = winx; j < width - winx - max_disp ; j++)
 		{
-			int jWinStart = j - winx;
-			int jWinEnd = j + winx;
+			int jWinStart = j - (winx-1)/2;
+			int jWinEnd = j + (winx-1)/2;
 
 			// Get the right region (template that will be matched with the image)
 			int y = 0; int x = 0; int u = 0; int v = 0;
 
-			for(y = iWinStart; y < iWinEnd; y++)
+			for(y = iWinStart; y <= iWinEnd; y++)
 			{
 				v = 0;
-				for(x = jWinStart; x < jWinEnd; x++)
+				for(x = jWinStart; x <= jWinEnd; x++)
 				{
 					uint8_t pixel = stereoImage->Right[y*width + x];
 					template[u * winx + v] = pixel;
@@ -70,10 +70,6 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 			}
 
 			if(i == bottomLine){
-
-				ncc = 0.0;
-				prevCorr = 0.0;
-				bestMatchSoFar = 0;
 
 				int* fullDisp = Memory_alloc(NULL,sizeof(int)*max_disp, 0,NULL);
 
@@ -110,33 +106,51 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 	return disparityMap;
 }
 
+
 uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
 {
 	uint8_t matchRegion[WIN * ((2 * WIN) - 1)];
 	int x,y,u,v,k;
 	u = 0;
 
-	double ncc = 0.0;
 	double prevCorr = 0.0;
 	int bestMatchSoFar = 0;
+
+	double ncc = 0.0;
+	double numerator = 0.0;
+	double denominator = 0.0;
+	double denominatorRight = 0.0;
+	double denominatorLeft = 0.0;
+
 
 	for(k = 0; k < disparitiesToSearchLength; k++)
 	{
 		if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < g_max_disp)
 		{
+			numerator = 0;
+			denominator = 0;
+			denominatorRight=0;
+			denominatorLeft=0;
 			//Get the left region (the region that will be matched with the template
 			x = 0 ; y = 0 ; u = 0; v = 0;
-			for(y = iWinStart; y < iWinEnd; y++)
+			for(y = iWinStart; y <= iWinEnd; y++)
 			{
 				v = 0;
-				for(x = jWinStart + disparitiesToSearch[k]; x < jWinEnd + disparitiesToSearch[k]; x++)
+				for(x = jWinStart + disparitiesToSearch[k]; x <= jWinEnd + disparitiesToSearch[k]; x++)
 				{
-					matchRegion[u*g_winx + v] = stereoImage->Left[y*g_width + x];
+					uint8_t templatePixel = template[u* g_winx + v];
+					uint8_t matchPixel = stereoImage->Left[y*g_width + x];
+					numerator += (templatePixel * matchPixel);
+					denominatorLeft += (matchPixel * matchPixel);
+					denominatorRight += (templatePixel * templatePixel);
 					v++;
 				}u++;
 			}
 
-			ncc = NCC(template, matchRegion, g_winx, g_winy);
+			denominator = denominatorLeft * denominatorRight;
+			denominator = sqrtsp(denominator);
+			ncc = numerator/denominator;
+
 			if(ncc > prevCorr)
 			{
 				prevCorr = ncc;
@@ -160,11 +174,14 @@ double NCC(uint8_t* templateToMatch, uint8_t* regionToMatch, int winx, int winy)
 	{
 		for(j = 0; j < winx; j++)
 		{
+			//			printf("template pixel 2: %d\n", templateToMatch[i*winx + j]);
+
 			numerator += templateToMatch[i*winx + j] * regionToMatch[i*winx + j];
 			denominatorLeft += regionToMatch[i*winx + j] * regionToMatch[i*winx + j];
 			denominatorRight += templateToMatch[i*winx + j] * templateToMatch[i*winx + j];
 		}
 	}
+	//	printf("iterating 2 : %d \n", i * j);
 	denominator = denominatorLeft * denominatorRight;
 	denominator = sqrtsp(denominator);
 
