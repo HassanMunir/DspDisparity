@@ -8,7 +8,13 @@
 #include <xdc/runtime/Memory.h>
 
 
-//uint8_t disparityMap[COLS * ROWS];
+int g_winx;
+int g_winy;
+int g_max_disp;
+int g_width;
+int g_height;
+
+uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength);
 
 // i, y, v refer to rows
 // j, x, u refer to cols
@@ -23,40 +29,38 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 	int winx = WIN - 1;
 	int winy = (WIN- 1)/2;
 
-	uint8_t template[WIN * ((2 * WIN) - 1)];
-	uint8_t matchRegion[WIN * ((2 * WIN) - 1)];
-	int disparitiesToSearch[9];
+	g_winx = winx;
+		g_winy = winy;
+		g_max_disp = max_disp;
+		g_width = width;
+		g_height = height;
 
+	uint8_t template[WIN * ((2 * WIN) - 1)];
+	int disparitiesToSearch[9];
 
 	int k = 0;
 	int i,j;
 
 	int bottomLine = height - winy;
-	//		int bottomLine = winy;
 
-	//	for( i = winy; i < height - winy; i++)
 	for(i = height - winy; i > winy; i--)
 	{
-		int iWinStr = i - winy;
+		int iWinStart = i - winy;
 		int iWinEnd = i + winy;
-
-		double ncc = 0.0;
-		double prevCorr = 0.0;
-		int bestMatchSoFar = 0;
 
 		//This is where parallel processing starts
 		for(j = 1 + winx; j < width - winx - max_disp ; j++)
 		{
-			int jWinStr = j - winx;
+			int jWinStart = j - winx;
 			int jWinEnd = j + winx;
 
 			// Get the right region (template that will be matched with the image)
 			int y = 0; int x = 0; int u = 0; int v = 0;
 
-			for(y = iWinStr; y < iWinEnd; y++)
+			for(y = iWinStart; y < iWinEnd; y++)
 			{
 				v = 0;
-				for(x = jWinStr; x < jWinEnd; x++)
+				for(x = jWinStart; x < jWinEnd; x++)
 				{
 					uint8_t pixel = stereoImage->Right[y*width + x];
 					template[u * winx + v] = pixel;
@@ -71,60 +75,15 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 				prevCorr = 0.0;
 				bestMatchSoFar = 0;
 
-				for(k = MIN_DISP; k < max_disp; k++)
-				{
-					//Get the left region (the region that will be matched with the template
-					x = 0 ; y = 0 ; u = 0; v = 0;
+				int* fullDisp = Memory_alloc(NULL,sizeof(int)*max_disp, 0,NULL);
 
-					for(y = iWinStr; y < iWinEnd; y++)
-					{
-						v = 0;
-						for(x = jWinStr + k; x < jWinEnd + k; x++)
-						{
-							matchRegion[u*winx+ v] = stereoImage->Left[y*width + x];
-							v++;
-						}u++;
-					}
+				for(k = 0; k < max_disp; k++)
+					fullDisp[k] = k;
 
-					ncc = NCC(template, matchRegion, winx, winy);
-					if(ncc > prevCorr)
-					{
-						prevCorr = ncc;
-						bestMatchSoFar = k;
-					}
-				}
-				disparityMap[i*width + j] = _abs(bestMatchSoFar);
+				disparityMap[i*width + j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, fullDisp, max_disp);
+
 			} else {
-				ncc = 0.0;
-				prevCorr = 0.0;
-				bestMatchSoFar = 0;
-
-				for(k = 0; k < 9; k++)
-				{
-					if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < max_disp)
-					{
-						//Get the left region (the region that will be matched with the template
-						x = 0 ; y = 0 ; u = 0; v = 0;
-
-						for(y = iWinStr; y < iWinEnd; y++)
-						{
-							v = 0;
-							for(x = jWinStr + disparitiesToSearch[k]; x < jWinEnd + disparitiesToSearch[k]; x++)
-							{
-								matchRegion[u*winx + v] = stereoImage->Left[y*width + x];
-								v++;
-							}u++;
-						}
-
-						ncc = NCC(template, matchRegion, winx, winy);
-						if(ncc > prevCorr)
-						{
-							prevCorr = ncc;
-							bestMatchSoFar = disparitiesToSearch[k];
-						}
-					}
-				}
-				disparityMap[i*width + j] =  (uint8_t) bestMatchSoFar;
+				disparityMap[i*width + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
 			}
 
 			disparitiesToSearch[0] =   disparityMap[ ((i + 1 )* width) + j] - 1;
@@ -150,6 +109,44 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 
 	return disparityMap;
 }
+
+uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
+{
+	uint8_t matchRegion[WIN * ((2 * WIN) - 1)];
+	int x,y,u,v,k;
+	u = 0;
+
+	double ncc = 0.0;
+	double prevCorr = 0.0;
+	int bestMatchSoFar = 0;
+
+	for(k = 0; k < disparitiesToSearchLength; k++)
+	{
+		if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < g_max_disp)
+		{
+			//Get the left region (the region that will be matched with the template
+			x = 0 ; y = 0 ; u = 0; v = 0;
+			for(y = iWinStart; y < iWinEnd; y++)
+			{
+				v = 0;
+				for(x = jWinStart + disparitiesToSearch[k]; x < jWinEnd + disparitiesToSearch[k]; x++)
+				{
+					matchRegion[u*g_winx + v] = stereoImage->Left[y*g_width + x];
+					v++;
+				}u++;
+			}
+
+			ncc = NCC(template, matchRegion, g_winx, g_winy);
+			if(ncc > prevCorr)
+			{
+				prevCorr = ncc;
+				bestMatchSoFar = disparitiesToSearch[k];
+			}
+		}
+	}
+	return bestMatchSoFar;
+}
+
 
 double NCC(uint8_t* templateToMatch, uint8_t* regionToMatch, int winx, int winy)
 {
