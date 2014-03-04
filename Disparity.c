@@ -43,12 +43,14 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 
 	int bottomLine = height - winy;
 
+	//Iterate over the rows
 	for(i = height - winy; i > winy; i--)
 	{
 		int iWinStart = i - ((winy-1)/2);
 		int iWinEnd = i + ((winy-1)/2);
 
-		//This is where parallel processing starts
+		//TODO - This is where parallel processing should start
+		//Iterate over the columns
 		for(j = winx; j < width - winx - max_disp ; j++)
 		{
 			int jWinStart = j - (winx-1)/2;
@@ -69,6 +71,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 				u++;
 			}
 
+			//TODO - Move this out of the loop
 			if(i == bottomLine){
 
 				int* fullDisp = Memory_alloc(NULL,sizeof(int)*max_disp, 0,NULL);
@@ -79,21 +82,23 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 				disparityMap[i*width + j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, fullDisp, max_disp);
 
 			} else {
+
 				disparityMap[i*width + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
 			}
 
-			disparitiesToSearch[0] =   disparityMap[ ((i + 1 )* width) + j] - 1;
-			disparitiesToSearch[3] =   disparityMap[ ((i + 1 ) * width) + (j - 1)] - 1;
-			disparitiesToSearch[6] =   disparityMap[ ((i + 1 ) * width) + (j + 1)] - 1;
+			disparitiesToSearch[0] = disparityMap[ ((i + 1 )* width) + j] - 1;
+			disparitiesToSearch[3] = disparityMap[ ((i + 1 ) * width) + (j - 1)] - 1;
+			disparitiesToSearch[6] = disparityMap[ ((i + 1 ) * width) + (j + 1)] - 1;
 
-			disparitiesToSearch[1] =   disparitiesToSearch[0] + 1;
-			disparitiesToSearch[2] =  disparitiesToSearch[0] + 2;
+			disparitiesToSearch[1] = disparitiesToSearch[0] + 1;
+			disparitiesToSearch[2] = disparitiesToSearch[0] + 2;
 
-			disparitiesToSearch[4] =  disparitiesToSearch[3] + 1;
-			disparitiesToSearch[5] =   disparitiesToSearch[3] + 2;
+			disparitiesToSearch[4] = disparitiesToSearch[3] + 1;
+			disparitiesToSearch[5] = disparitiesToSearch[3] + 2;
 
-			disparitiesToSearch[7] =   disparitiesToSearch[6] + 1;
-			disparitiesToSearch[8] =  disparitiesToSearch[6] + 2;
+			disparitiesToSearch[7] = disparitiesToSearch[6] + 1;
+			disparitiesToSearch[8] = disparitiesToSearch[6] + 2;
+
 		}
 #if PRINT_DETAILS == 1
 		printf("Row %d processed\n", i);
@@ -121,7 +126,6 @@ uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint
 	double denominator = 0.0;
 	double denominatorRight = 0.0;
 	double denominatorLeft = 0.0;
-
 
 	for(k = 0; k < disparitiesToSearchLength; k++)
 	{
@@ -161,7 +165,7 @@ uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint
 	return bestMatchSoFar;
 }
 
-
+//Not used anymore
 double NCC(uint8_t* templateToMatch, uint8_t* regionToMatch, int winx, int winy)
 {
 	double numerator = 0.0;

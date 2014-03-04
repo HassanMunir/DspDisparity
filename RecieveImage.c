@@ -59,6 +59,8 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	to.tv_sec = 3;
 	to.tv_usec = 0;
 
+	int height, width, disparity, filesize;
+
 	g_transmissionError = 0;
 
 	setsockopt(s, SOL_SOCKET, SO_SNDTIMEO, &to, sizeof(to));
@@ -66,7 +68,6 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 
 	while(1)
 	{
-		int height, width, disparity;
 		height = ReceiveInt32(s);
 		width = ReceiveInt32(s);
 		disparity = ReceiveInt32(s);
@@ -76,7 +77,7 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 
 		printf("Dimensions received [%d x %d]\n", width, height);
 
-		int filesize = width * height;
+		filesize = width * height;
 
 		StereoImage images = RecieveStereoImage(s, filesize);
 
@@ -95,9 +96,9 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 
 		uint8_t* image = GetDisparityMap(&images, width, height,disparity);
 
-		uint32_t end = Timestamp_get32();
+		uint32_t timeTaken = Timestamp_get32() - start;
 
-		printf("[%f s]\n", (double)end/freq.lo);
+		printf("[%f s]\n", (double)timeTaken/freq.lo);
 
 		printf("Sending disparity map dimensions..\n");
 		bytesSent = SendInt32(s, height);
