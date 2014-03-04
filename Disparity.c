@@ -27,7 +27,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 #endif
 
 	int winx = WIN ;
-	int winy = (WIN- 1)/2;
+	int winy = (WIN- 1)>>1;
 
 	g_winx = winx;
 	g_winy = winy;
@@ -46,15 +46,15 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 	//Iterate over the rows
 	for(i = height - winy; i > winy; i--)
 	{
-		int iWinStart = i - ((winy-1)/2);
-		int iWinEnd = i + ((winy-1)/2);
+		int iWinStart = i - ((winy-1) >> 1);
+		int iWinEnd = i + ((winy-1) >> 1);
 
 		//TODO - This is where parallel processing should start
 		//Iterate over the columns
 		for(j = winx; j < width - winx - max_disp ; j++)
 		{
-			int jWinStart = j - (winx-1)/2;
-			int jWinEnd = j + (winx-1)/2;
+			int jWinStart = j - ((winx-1) >> 1);
+			int jWinEnd = j + ((winx-1) >> 1);
 
 			// Get the right region (template that will be matched with the image)
 			int y = 0; int x = 0; int u = 0; int v = 0;
@@ -98,7 +98,6 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 
 			disparitiesToSearch[7] = disparitiesToSearch[6] + 1;
 			disparitiesToSearch[8] = disparitiesToSearch[6] + 2;
-
 		}
 #if PRINT_DETAILS == 1
 		printf("Row %d processed\n", i);
@@ -114,7 +113,6 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 
 uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
 {
-	uint8_t matchRegion[WIN * ((2 * WIN) - 1)];
 	int x,y,u,v,k;
 	u = 0;
 
