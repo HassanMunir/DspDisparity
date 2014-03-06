@@ -1,6 +1,7 @@
 # FIXED
 
 Disparity.obj: ../Disparity.c
+Disparity.obj: ../Disparity.c
 Disparity.obj: ../header/Disparity.h
 Disparity.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdint.h
 Disparity.obj: ../header/Config.h
@@ -148,6 +149,7 @@ Disparity.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/IInstance.h
 Disparity.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/IHeap.h
 Disparity.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/package/Memory_HeapProxy.h
 
+../Disparity.c: 
 ../Disparity.c: 
 ../header/Disparity.h: 
 F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdint.h: 

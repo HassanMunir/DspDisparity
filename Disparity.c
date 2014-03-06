@@ -33,7 +33,6 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 	int disparitiesToSearch[9];
 
 	int k, i, j, iWinStart, iWinEnd, jWinStart, jWinEnd;
-	int x, y, u, v;
 
 	int bottomLine = height - WIN_Y;
 
@@ -46,23 +45,10 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 		//TODO - This is where parallel processing should start
 		//Iterate over the columns
 		for(j = WIN_X; j < width - WIN_X - max_disp ; j++)
+//		for(j = WIN_X; j < width - WIN_X ; j++)
 		{
 			jWinStart = j - J_SIDE;
 			jWinEnd = j + J_SIDE;
-
-			// Get the right region (template that will be matched with the image)
-			y = 0; x = 0; u = 0; v = 0;
-			for(y = iWinStart; y <= iWinEnd; y++)
-			{
-				v = 0;
-				for(x = jWinStart; x <= jWinEnd; x++)
-				{
-					uint8_t pixel = stereoImage->Right[y*width + x];
-					template[u * WIN_X + v] = pixel;
-					v++;
-				}
-				u++;
-			}
 
 			//TODO - Move this out of the loop
 			if(i == bottomLine){
@@ -103,7 +89,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 	return disparityMap;
 }
 
-
+//Inline this function - 'inline' keyword doesn't seem to work
 uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
 {
 	int x,y,u,v,k,bestMatchSoFar;
@@ -132,13 +118,13 @@ uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint
 			u = 0;
 			for(y = iWinStart; y <= iWinEnd; y++)
 			{
-				v = 0;
+				v = jWinStart;
 				for(x = jWinStart + disparitiesToSearch[k]; x <= jWinEnd + disparitiesToSearch[k]; x++)
 				{
 					//Load word for template
 					//Load word for match region
 					//Multiply word
-					uint8_t templatePixel = template[u* g_winx + v];
+					uint8_t templatePixel = stereoImage->Right[y* g_width + v];
 					uint8_t matchPixel = stereoImage->Left[y*g_width + x];
 					numerator += (templatePixel * matchPixel);
 					denominatorLeft += (matchPixel * matchPixel);
@@ -146,7 +132,6 @@ uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint
 					v++;
 				}u++;
 			}
-
 
 			denominator = denominatorLeft * denominatorRight;
 

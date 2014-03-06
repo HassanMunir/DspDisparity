@@ -1,6 +1,7 @@
 # FIXED
 
 Initialise.obj: ../Initialise.c
+Initialise.obj: ../Initialise.c
 Initialise.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdio.h
 Initialise.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/linkage.h
 Initialise.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdarg.h
@@ -144,6 +145,7 @@ Initialise.obj: F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/pa/pa.h
 Initialise.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdlib.h
 Initialise.obj: F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/pa/paver.h
 
+../Initialise.c: 
 ../Initialise.c: 
 F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdio.h: 
 F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/linkage.h: 

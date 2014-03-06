@@ -6,7 +6,7 @@
 Disparity.obj: ../Disparity.c $(GEN_OPTS) $(GEN_HDRS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 -g --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --diag_warning=225 --openmp --advice:performance --preproc_with_compile --preproc_dependency="Disparity.pp" $(GEN_OPTS__FLAG) "$<"
+	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all --preproc_with_compile --preproc_dependency="Disparity.pp" --pm $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -20,38 +20,31 @@ configPkg/linker.cmd: ../Disparity.cfg
 configPkg/compiler.opt: | configPkg/linker.cmd
 configPkg/: | configPkg/linker.cmd
 
-ImageTable.obj: ../ImageTable.c $(GEN_OPTS) $(GEN_HDRS)
-	@echo 'Building file: $<'
-	@echo 'Invoking: C6000 Compiler'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 -g --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --diag_warning=225 --openmp --advice:performance --preproc_with_compile --preproc_dependency="ImageTable.pp" $(GEN_OPTS__FLAG) "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
-
 Initialise.obj: ../Initialise.c $(GEN_OPTS) $(GEN_HDRS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 -g --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --diag_warning=225 --openmp --advice:performance --preproc_with_compile --preproc_dependency="Initialise.pp" $(GEN_OPTS__FLAG) "$<"
+	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all --preproc_with_compile --preproc_dependency="Initialise.pp" --pm $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 RecieveImage.obj: ../RecieveImage.c $(GEN_OPTS) $(GEN_HDRS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 -g --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --diag_warning=225 --openmp --advice:performance --preproc_with_compile --preproc_dependency="RecieveImage.pp" $(GEN_OPTS__FLAG) "$<"
+	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all --preproc_with_compile --preproc_dependency="RecieveImage.pp" --pm $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 platform_osal.obj: ../platform_osal.c $(GEN_OPTS) $(GEN_HDRS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 -g --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --diag_warning=225 --openmp --advice:performance --preproc_with_compile --preproc_dependency="platform_osal.pp" $(GEN_OPTS__FLAG) "$<"
+	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all --preproc_with_compile --preproc_dependency="platform_osal.pp" --pm $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 resourcemgr.obj: ../resourcemgr.c $(GEN_OPTS) $(GEN_HDRS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 -g --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --diag_warning=225 --openmp --advice:performance --preproc_with_compile --preproc_dependency="resourcemgr.pp" $(GEN_OPTS__FLAG) "$<"
+	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --include_path="F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --include_path="F:/ti/mathlib_c66x_3_0_1_1/inc" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/qmss" --include_path="F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi" --include_path="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace" --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all --preproc_with_compile --preproc_dependency="resourcemgr.pp" --pm $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

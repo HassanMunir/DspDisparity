@@ -1,6 +1,7 @@
 # FIXED
 
 platform_osal.obj: ../platform_osal.c
+platform_osal.obj: ../platform_osal.c
 platform_osal.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdio.h
 platform_osal.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/linkage.h
 platform_osal.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdarg.h
@@ -267,6 +268,7 @@ platform_osal.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/IInstance.h
 platform_osal.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/IGateProvider.h
 platform_osal.obj: F:/ti/bios_6_35_04_50/packages/ti/sysbios/heaps/package/HeapMem_Module_GateProxy.h
 
+../platform_osal.c: 
 ../platform_osal.c: 
 F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdio.h: 
 F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/linkage.h: 

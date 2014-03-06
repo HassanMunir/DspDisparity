@@ -12,7 +12,6 @@ $(GEN_CMDS__FLAG) \
 "./platform_osal.obj" \
 "./RecieveImage.obj" \
 "./Initialise.obj" \
-"./ImageTable.obj" \
 "./Disparity.obj" \
 -l"libc.a" \
 -l"F:/ti/mathlib_c66x_3_0_1_1/lib/mathlib.ae66" \
@@ -120,7 +119,7 @@ all: Disparity.out
 Disparity.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 -g --diag_warning=225 --openmp --advice:performance -z -m"Disparity.map" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/lib" -i"F:/ti/mathlib_c66x_3_0_1_1/lib" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --reread_libs --warn_sections --xml_link_info="Disparity_linkInfo.xml" --rom_model -o "Disparity.out" $(ORDERED_OBJS)
+	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all -z -m"Disparity.map" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/lib" -i"F:/ti/mathlib_c66x_3_0_1_1/lib" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --reread_libs --warn_sections --xml_link_info="Disparity_linkInfo.xml" --rom_model -o "Disparity.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -128,8 +127,8 @@ Disparity.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(C6000_EXECUTABLE_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(GEN_OPTS__QUOTED)$(GEN_CMDS__QUOTED) "Disparity.out"
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
-	-$(RM) "Disparity.pp" "ImageTable.pp" "Initialise.pp" "RecieveImage.pp" "platform_osal.pp" "resourcemgr.pp" 
-	-$(RM) "Disparity.obj" "ImageTable.obj" "Initialise.obj" "RecieveImage.obj" "platform_osal.obj" "resourcemgr.obj" 
+	-$(RM) "Disparity.pp" "Initialise.pp" "RecieveImage.pp" "platform_osal.pp" "resourcemgr.pp" 
+	-$(RM) "Disparity.obj" "Initialise.obj" "RecieveImage.obj" "platform_osal.obj" "resourcemgr.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

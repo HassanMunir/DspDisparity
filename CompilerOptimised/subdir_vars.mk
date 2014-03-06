@@ -8,7 +8,6 @@ CFG_SRCS += \
 
 C_SRCS += \
 ../Disparity.c \
-../ImageTable.c \
 ../Initialise.c \
 ../RecieveImage.c \
 ../platform_osal.c \
@@ -16,7 +15,6 @@ C_SRCS += \
 
 OBJS += \
 ./Disparity.obj \
-./ImageTable.obj \
 ./Initialise.obj \
 ./RecieveImage.obj \
 ./platform_osal.obj \
@@ -24,7 +22,6 @@ OBJS += \
 
 C_DEPS += \
 ./Disparity.pp \
-./ImageTable.pp \
 ./Initialise.pp \
 ./RecieveImage.pp \
 ./platform_osal.pp \
@@ -52,7 +49,6 @@ GEN_MISC_DIRS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "Disparity.pp" \
-"ImageTable.pp" \
 "Initialise.pp" \
 "RecieveImage.pp" \
 "platform_osal.pp" \
@@ -60,7 +56,6 @@ C_DEPS__QUOTED += \
 
 OBJS__QUOTED += \
 "Disparity.obj" \
-"ImageTable.obj" \
 "Initialise.obj" \
 "RecieveImage.obj" \
 "platform_osal.obj" \
@@ -68,7 +63,6 @@ OBJS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../Disparity.c" \
-"../ImageTable.c" \
 "../Initialise.c" \
 "../RecieveImage.c" \
 "../platform_osal.c" \

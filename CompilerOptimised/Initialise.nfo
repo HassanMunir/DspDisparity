@@ -1,0 +1,220 @@
+TMS320C6x C/C++ Optimizer               v7.4.6
+Build Number 1NKJR-KDADEMDK-RTARQ-WAR-ZAZG_X_U_W
+
+		======File-level Analysis Summary======
+
+
+extern void EVM_init() is called from 0 sites in this file.
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	platform_delay() (2 times)
+	platform_led() (2 times)
+	platform_init() (1 times)
+	memset() (2 times)
+
+static void NetworkClose() is called from 0 sites in this file.
+    It appears to be inlineable (size = 3 units)
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	DaemonFree() (1 times)
+
+static void NetworkIPAddr() is called from 0 sites in this file.
+    It appears to be inlineable (size = 47 units)
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	printf() (3 times)
+
+static void NetworkOpen() is called from 0 sites in this file.
+    It appears to be inlineable (size = 19 units)
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	DaemonNew() (1 times)
+
+static void ServiceReport() is called from 0 sites in this file.
+    It appears to be inlineable (size = 68 units)
+    It has 4 non-trivial scope blocks nested 4 deep.
+    It calls these functions:
+	CfgAddEntry() (1 times)
+	inet_addr() (1 times)
+	printf() (1 times)
+
+extern int StackTest() is called from 0 sites in this file.
+    It has 5 non-trivial scope blocks nested 4 deep.
+    It calls these functions:
+	NC_SystemClose() (1 times)
+	printf() (1 times)
+	CfgFree() (1 times)
+	NC_NetStart() (1 times)
+	strcpy() (1 times)
+	inet_addr() (4 times)
+	mmZeroInit() (3 times)
+	platform_get_switch_state() (1 times)
+	CfgAddEntry() (7 times)
+	strlen() (3 times)
+	CfgNew() (1 times)
+	NC_SystemOpen() (1 times)
+	res_mgr_init_pass() (1 times)
+	res_mgr_init_cppi() (1 times)
+	platform_write() (9 times)
+	res_mgr_init_qmss() (1 times)
+	platform_get_coreid() (2 times)
+	platform_led() (1 times)
+	platform_write_configure() (1 times)
+	platform_uart_set_baudrate() (1 times)
+	platform_uart_init() (1 times)
+	platform_get_info() (1 times)
+	memset() (1 times)
+
+extern int main() is called from 0 sites in this file.
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	ti_sysbios_BIOS_start__E() (1 times)
+
+static char *strcpy() is called from 1 sites in this file.
+    It appears to be inlineable (size = 23 units)
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	<NONE>
+
+static unsigned strlen() is called from 3 sites in this file.
+    It appears to be inlineable (size = 15 units)
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	<NONE>
+
+Address of global variable is never taken:
+	static void *hHello
+
+
+
+These functions may be recursive:
+	EVM_init()
+	NetworkClose()
+	NetworkIPAddr()
+	NetworkOpen()
+	ServiceReport()
+	StackTest()
+	main()
+Inlineable function will be suppressed: strlen()
+Inlineable function will be suppressed: strcpy()
+
+These external functions are called but not defined here:
+	printf()
+	memset()
+	ti_sysbios_BIOS_start__E()
+	platform_get_info()
+	platform_uart_init()
+	platform_uart_set_baudrate()
+	platform_write_configure()
+	platform_get_coreid()
+	res_mgr_init_qmss()
+	platform_write()
+	res_mgr_init_cppi()
+	res_mgr_init_pass()
+	NC_SystemOpen()
+	CfgNew()
+	platform_get_switch_state()
+	mmZeroInit()
+	NC_NetStart()
+	CfgFree()
+	NC_SystemClose()
+	inet_addr()
+	CfgAddEntry()
+	DaemonNew()
+	DaemonFree()
+	platform_init()
+	platform_led()
+	platform_delay()
+
+
+		======= End file-level Analysis =======
+
+
+==============================================================================
+
+extern int main() is called from 0 sites in this file.
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	<NONE>
+
+There are 0 memory accesses with 0 dependences.
+
+
+==============================================================================
+
+extern int StackTest() is called from 0 sites in this file.
+    It has 5 non-trivial scope blocks nested 4 deep.
+    It calls these functions:
+	strlen() (3 times)
+	strcpy() (1 times)
+
+The following local variables in StackTest() will be grouped together
+to share stack space among distinct scoping blocks.  References
+in the source interlisting will look like "O$1.s3_1.l3_2" or "&$O$O1+0".
+
+    --offset--    --reference--			 --variable--
+
+          0	  O$1.s3_1.l3_2                  struct ci_service_dhcpc dhcpc  [../Initialise.c:339]
+          0	  O$1.s3_3.l3_4                  struct ci_route RT  [../Initialise.c:305]
+         16	  O$1.s3_3.l3_5                  struct ci_ipnet NA  [../Initialise.c:304]
+
+
+There are 43 memory accesses with 148 dependences.
+
+
+==============================================================================
+
+static void ServiceReport() is called from 0 sites in this file.
+    It appears to be inlineable (size = 68 units)
+    It has 4 non-trivial scope blocks nested 4 deep.
+    It calls these functions:
+	<NONE>
+
+There are 5 memory accesses with 0 dependences.
+
+
+==============================================================================
+
+static void NetworkOpen() is called from 0 sites in this file.
+    It appears to be inlineable (size = 19 units)
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	<NONE>
+
+There are 3 memory accesses with 0 dependences.
+
+
+==============================================================================
+
+static void NetworkIPAddr() is called from 0 sites in this file.
+    It appears to be inlineable (size = 47 units)
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	<NONE>
+
+There are 0 memory accesses with 0 dependences.
+
+
+==============================================================================
+
+static void NetworkClose() is called from 0 sites in this file.
+    It appears to be inlineable (size = 3 units)
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	<NONE>
+
+There are 1 memory accesses with 0 dependences.
+
+
+==============================================================================
+
+extern void EVM_init() is called from 0 sites in this file.
+    It has 3 non-trivial scope blocks nested 3 deep.
+    It calls these functions:
+	<NONE>
+
+There are 6 memory accesses with 0 dependences.
+
+<<NULL MIX DOMAIN>>
+
+== END OF INFO OUTPUT==

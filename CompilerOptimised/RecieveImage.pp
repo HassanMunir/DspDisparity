@@ -1,6 +1,7 @@
 # FIXED
 
 RecieveImage.obj: ../RecieveImage.c
+RecieveImage.obj: ../RecieveImage.c
 RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/cfg/global.h
 RecieveImage.obj: C:/Users/Hassan/SkyDrive/Documents/University/Year\ 4/Individual\ Project/Workspace/Disparity/CompilerOptimised/configPkg/package/cfg/Disparity_pe66.h
 RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/std.h
@@ -144,7 +145,7 @@ RecieveImage.obj: F:/ti/bios_6_35_04_50/packages/ti/sysbios/knl/package/Task_Sup
 RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Types.h
 RecieveImage.obj: F:/ti/bios_6_35_04_50/packages/ti/sysbios/interfaces/ITaskSupport.h
 RecieveImage.obj: F:/ti/bios_6_35_04_50/packages/ti/sysbios/knl/Task__epilogue.h
-RecieveImage.obj: ../ImageTable.h
+RecieveImage.obj: ../header/Disparity.h
 RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/netmain.h
 RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/stacksys.h
 RecieveImage.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdarg.h
@@ -174,11 +175,6 @@ RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/nettools/netcfg.h
 RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/_netctrl.h
 RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/netctrl/netctrl.h
 RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/netctrl/netsrv.h
-RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/IHeap.h
-RecieveImage.obj: ../header/Disparity.h
-RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/netmain.h
-RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/_nettool.h
-RecieveImage.obj: F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/_netctrl.h
 RecieveImage.obj: F:/ti/pdk_C6678_1_1_2_6/packages/ti/platform/platform.h
 RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Memory.h
 RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/package/Memory_HeapProxy.h
@@ -280,6 +276,7 @@ RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Types.h
 RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/ITimestampProvider.h
 RecieveImage.obj: F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/package/Timestamp_SupportProxy.h
 
+../RecieveImage.c: 
 ../RecieveImage.c: 
 F:/ti/xdctools_3_25_04_88/packages/xdc/cfg/global.h: 
 C:/Users/Hassan/SkyDrive/Documents/University/Year\ 4/Individual\ Project/Workspace/Disparity/CompilerOptimised/configPkg/package/cfg/Disparity_pe66.h: 
@@ -424,7 +421,7 @@ F:/ti/bios_6_35_04_50/packages/ti/sysbios/knl/package/Task_SupportProxy.h:
 F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Types.h: 
 F:/ti/bios_6_35_04_50/packages/ti/sysbios/interfaces/ITaskSupport.h: 
 F:/ti/bios_6_35_04_50/packages/ti/sysbios/knl/Task__epilogue.h: 
-../ImageTable.h: 
+../header/Disparity.h: 
 F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/netmain.h: 
 F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/stacksys.h: 
 F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdarg.h: 
@@ -454,11 +451,6 @@ F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/nettools/netcfg.h:
 F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/_netctrl.h: 
 F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/netctrl/netctrl.h: 
 F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/netctrl/netsrv.h: 
-F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/IHeap.h: 
-../header/Disparity.h: 
-F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/netmain.h: 
-F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/_nettool.h: 
-F:/ti/ndk_2_23_00_00/packages/ti/ndk/inc/_netctrl.h: 
 F:/ti/pdk_C6678_1_1_2_6/packages/ti/platform/platform.h: 
 F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/Memory.h: 
 F:/ti/xdctools_3_25_04_88/packages/xdc/runtime/package/Memory_HeapProxy.h: 

@@ -1,6 +1,7 @@
 # FIXED
 
 resourcemgr.obj: ../resourcemgr.c
+resourcemgr.obj: ../resourcemgr.c
 resourcemgr.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdio.h
 resourcemgr.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/linkage.h
 resourcemgr.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdarg.h
@@ -88,6 +89,7 @@ resourcemgr.obj: F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi/device/cppi_device
 resourcemgr.obj: F:/ti/pdk_C6678_1_1_2_6/packages/ti/drv/cppi/cppi_types.h
 resourcemgr.obj: F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdlib.h
 
+../resourcemgr.c: 
 ../resourcemgr.c: 
 F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/stdio.h: 
 F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/linkage.h: 
