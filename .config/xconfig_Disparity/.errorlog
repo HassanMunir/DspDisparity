@@ -1,0 +1,82 @@
+      1 [main] ? (-10328) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x1EE88E0/0x1F088E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] ? (-9012) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x1EE88E0/0x1EC88E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] ? (9104) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x1EE88E0/0x1F988E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] ? (7296) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x1EE88E0/0x1E888E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] ? (6748) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x1EE88E0/0x1F488E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] ? (-7972) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x1EE88E0/0x1F688E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] ? (-8512) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x1EE88E0/0x1F588E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] ? (2920) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x1EE88E0/0x1FA88E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+     43 [main] sh 9908 fork: child -1 - died waiting for longjmp before initialization, retry -1, exit code 0xC0000142, errno 11
+C:/Users/Hassan/AppData/Local/Temp/make9400-1.sh: Cannot fork: Resource temporarily unavailable
+      1 [main] ? (8680) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x20688E0/0x20188E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] ? (8756) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x20688E0/0x21088E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      2 [main] ? (10872) F:\ti\xdctools_3_25_04_88\bin\sh.exe: *** fatal error - cygheap base mismatch detected - 0x20688E0/0x20288E0.
+This problem is probably due to using incompatible versions of the cygwin DLL.
+Search for cygwin1.dll using the Windows Start->Find/Search facility
+and delete all but the most recent version.  The most recent version *should*
+reside in x:\cygwin\bin, where 'x' is the drive on which you have
+installed the cygwin distribution.  Rebooting is also suggested if you
+are unable to find another cygwin DLL.
+      1 [main] sh 10296 fork: child -1 - died waiting for longjmp before initialization, retry -1, exit code 0xC0000142, errno 11
+C:/Users/Hassan/AppData/Local/Temp/make9400-1.sh: Cannot fork: Resource temporarily unavailable
+F:/ti/xdctools_3_25_04_88/packages/xdc/bld/xdc_rules.mak:307: *** Error: Specified build configuration file '' is not found.  Stop.
