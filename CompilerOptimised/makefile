@@ -119,7 +119,7 @@ all: Disparity.out
 Disparity.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all -z -m"Disparity.map" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/lib" -i"F:/ti/mathlib_c66x_3_0_1_1/lib" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --reread_libs --warn_sections --xml_link_info="Disparity_linkInfo.xml" --rom_model -o "Disparity.out" $(ORDERED_OBJS)
+	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance_file=C:\PerformanceAdvice.txt --advice:performance=all --advice:performance_dir=C:\ -z -m"Disparity.map" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/lib" -i"F:/ti/mathlib_c66x_3_0_1_1/lib" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --reread_libs --warn_sections --xml_link_info="Disparity_linkInfo.xml" --rom_model -o "Disparity.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -1,6 +1,6 @@
 ;******************************************************************************
 ;* TMS320C6x C/C++ Codegen                                          PC v7.4.6 *
-;* Date/Time created: Thu Mar 06 16:37:17 2014                                *
+;* Date/Time created: Thu Mar 06 17:12:49 2014                                *
 ;******************************************************************************
 	.compiler_opts --abi=eabi --c64p_l1d_workaround=off --endian=little --hll_source=on --long_precision_bits=32 --mem_model:code=near --mem_model:const=data --mem_model:data=far_aggregates --multithread --object_format=elf --silicon_version=6600 --symdebug:dwarf_version=3 --symdebug:skeletal 
 
@@ -608,7 +608,7 @@ $C$DW$86	.dwtag  DW_TAG_variable, DW_AT_name("StatusStr")
 	.dwattr $C$DW$86, DW_AT_decl_file("../Initialise.c")
 	.dwattr $C$DW$86, DW_AT_decl_line(0x1c2)
 	.dwattr $C$DW$86, DW_AT_decl_column(0x0e)
-;	F:\ti\ccsv5\tools\compiler\c6000_7.4.6\bin\opt6x.exe --gen_opt_info=2 C:\\Users\\Hassan\\AppData\\Local\\Temp\\140002 C:\\Users\\Hassan\\AppData\\Local\\Temp\\140004 --opt_info_filename=Initialise.nfo 
+;	F:\ti\ccsv5\tools\compiler\c6000_7.4.6\bin\opt6x.exe --gen_opt_info=2 C:\\Users\\Hassan\\AppData\\Local\\Temp\\056162 C:\\Users\\Hassan\\AppData\\Local\\Temp\\056164 --opt_info_filename=Initialise.nfo 
 	.sect	".text"
 	.clink
 	.global	main
@@ -1952,7 +1952,7 @@ $C$DW$136	.dwtag  DW_TAG_TI_branch
            ; BRANCH OCCURS {B3}              ; |391| 
 
 $C$DW$137	.dwtag  DW_TAG_TI_loop
-	.dwattr $C$DW$137, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L22:1:1394123837")
+	.dwattr $C$DW$137, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L22:1:1394125969")
 	.dwattr $C$DW$137, DW_AT_TI_begin_file("../Initialise.c")
 	.dwattr $C$DW$137, DW_AT_TI_begin_line(0xf3)
 	.dwattr $C$DW$137, DW_AT_TI_end_line(0xf3)
@@ -1963,7 +1963,7 @@ $C$DW$138	.dwtag  DW_TAG_TI_loop_range
 
 
 $C$DW$139	.dwtag  DW_TAG_TI_loop
-	.dwattr $C$DW$139, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L19:1:1394123837")
+	.dwattr $C$DW$139, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L19:1:1394125969")
 	.dwattr $C$DW$139, DW_AT_TI_begin_file("../Initialise.c")
 	.dwattr $C$DW$139, DW_AT_TI_begin_line(0x17d)
 	.dwattr $C$DW$139, DW_AT_TI_end_line(0x17f)
@@ -1977,7 +1977,7 @@ $C$DW$141	.dwtag  DW_TAG_TI_loop_range
 
 
 $C$DW$142	.dwtag  DW_TAG_TI_loop
-	.dwattr $C$DW$142, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L13:1:1394123837")
+	.dwattr $C$DW$142, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L13:1:1394125969")
 	.dwattr $C$DW$142, DW_AT_TI_begin_file("F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/string.h")
 	.dwattr $C$DW$142, DW_AT_TI_begin_line(0x7c)
 	.dwattr $C$DW$142, DW_AT_TI_end_line(0x7c)
@@ -1988,7 +1988,7 @@ $C$DW$143	.dwtag  DW_TAG_TI_loop_range
 
 
 $C$DW$144	.dwtag  DW_TAG_TI_loop
-	.dwattr $C$DW$144, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L10:1:1394123837")
+	.dwattr $C$DW$144, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L10:1:1394125969")
 	.dwattr $C$DW$144, DW_AT_TI_begin_file("F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/string.h")
 	.dwattr $C$DW$144, DW_AT_TI_begin_line(0x71)
 	.dwattr $C$DW$144, DW_AT_TI_end_line(0x71)
@@ -1999,7 +1999,7 @@ $C$DW$145	.dwtag  DW_TAG_TI_loop_range
 
 
 $C$DW$146	.dwtag  DW_TAG_TI_loop
-	.dwattr $C$DW$146, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L7:1:1394123837")
+	.dwattr $C$DW$146, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L7:1:1394125969")
 	.dwattr $C$DW$146, DW_AT_TI_begin_file("F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/string.h")
 	.dwattr $C$DW$146, DW_AT_TI_begin_line(0x71)
 	.dwattr $C$DW$146, DW_AT_TI_end_line(0x71)
@@ -2010,7 +2010,7 @@ $C$DW$147	.dwtag  DW_TAG_TI_loop_range
 
 
 $C$DW$148	.dwtag  DW_TAG_TI_loop
-	.dwattr $C$DW$148, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L4:1:1394123837")
+	.dwattr $C$DW$148, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L4:1:1394125969")
 	.dwattr $C$DW$148, DW_AT_TI_begin_file("F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include/string.h")
 	.dwattr $C$DW$148, DW_AT_TI_begin_line(0x71)
 	.dwattr $C$DW$148, DW_AT_TI_end_line(0x71)
@@ -2021,7 +2021,7 @@ $C$DW$149	.dwtag  DW_TAG_TI_loop_range
 
 
 $C$DW$150	.dwtag  DW_TAG_TI_loop
-	.dwattr $C$DW$150, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L1:1:1394123837")
+	.dwattr $C$DW$150, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L1:1:1394125969")
 	.dwattr $C$DW$150, DW_AT_TI_begin_file("../Initialise.c")
 	.dwattr $C$DW$150, DW_AT_TI_begin_line(0xbc)
 	.dwattr $C$DW$150, DW_AT_TI_end_line(0xbe)
@@ -2767,7 +2767,7 @@ $C$L33:
            ; BRANCH OCCURS {B3}              ; |159| 
 
 $C$DW$187	.dwtag  DW_TAG_TI_loop
-	.dwattr $C$DW$187, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L32:1:1394123837")
+	.dwattr $C$DW$187, DW_AT_name("C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised\Initialise.asm:$C$L32:1:1394125969")
 	.dwattr $C$DW$187, DW_AT_TI_begin_file("../Initialise.c")
 	.dwattr $C$DW$187, DW_AT_TI_begin_line(0x97)
 	.dwattr $C$DW$187, DW_AT_TI_end_line(0x9c)

@@ -4,9 +4,9 @@ Build Number 1NKJR-KDADEMDK-RTARQ-WAR-ZAZG_X_U_W
 		======File-level Analysis Summary======
 
 
-extern unsigned char GetBestMatch() is called from 2 sites in this file.
+static unsigned char GetBestMatch() is called from 2 sites in this file.
     It appears to be inlineable (size = 132 units)
-    It has 4 non-trivial scope blocks nested 4 deep.
+    It has 6 non-trivial scope blocks nested 6 deep.
     It calls these functions:
 	rsqrtsp() (1 times)
 
@@ -20,6 +20,7 @@ extern unsigned char *GetDisparityMap() is called from 0 sites in this file.
 These functions may be recursive:
 	GetDisparityMap()
 	GetBestMatch()
+Inlineable function will be suppressed: GetBestMatch()
 
 These external functions are called but not defined here:
 	xdc_runtime_Memory_alloc__E()
@@ -27,45 +28,6 @@ These external functions are called but not defined here:
 
 
 		======= End file-level Analysis =======
-
-
-==============================================================================
-
-extern unsigned char GetBestMatch() is called from 2 sites in this file.
-    It appears to be inlineable (size = 132 units)
-    It has 4 non-trivial scope blocks nested 4 deep.
-    It calls these functions:
-	<NONE>
-
-		====== Unroll-and-jam Result Summary ======
-
-LOOP#1 in GetBestMatch() fails to unroll-and-jam: Outer Loop has multiple blocks
-
-		====== End Unroll-and-jam Result ======
-
-
-		====== Unroll-and-jam Result Summary ======
-
-LOOP#2 in GetBestMatch() fails to unroll-and-jam: Outer Loop has multiple blocks
-
-		====== End Unroll-and-jam Result ======
-
-
-		====== Unroll-and-jam Result Summary ======
-
-LOOP#1 in GetBestMatch() fails to unroll-and-jam: Outer Loop has multiple blocks
-
-		====== End Unroll-and-jam Result ======
-
-
-		====== Unroll-and-jam Result Summary ======
-
-LOOP#2 in GetBestMatch() fails to unroll-and-jam: Outer Loop has multiple blocks
-
-		====== End Unroll-and-jam Result ======
-
-
-There are 8 memory accesses with 0 dependences.
 
 
 ==============================================================================
@@ -89,10 +51,38 @@ LOOP#2 in GetDisparityMap() fails to unroll-and-jam: Outer Loop has multiple blo
 		====== End Unroll-and-jam Result ======
 
 
+		====== Unroll-and-jam Result Summary ======
+
+LOOP#4 in GetDisparityMap() fails to unroll-and-jam: Outer Loop has multiple blocks
+
+		====== End Unroll-and-jam Result ======
+
+
+		====== Unroll-and-jam Result Summary ======
+
+LOOP#5 in GetDisparityMap() fails to unroll-and-jam: Loop nest has a bad shape
+
+		====== End Unroll-and-jam Result ======
+
+
+		====== Unroll-and-jam Result Summary ======
+
+LOOP#7 in GetDisparityMap() fails to unroll-and-jam: Outer Loop has multiple blocks
+
+		====== End Unroll-and-jam Result ======
+
+
+		====== Unroll-and-jam Result Summary ======
+
+LOOP#8 in GetDisparityMap() fails to unroll-and-jam: Loop nest has a bad shape
+
+		====== End Unroll-and-jam Result ======
+
+
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -100,9 +90,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -110,9 +100,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -120,9 +110,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 72
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 71
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -130,9 +120,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 72
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 71
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -140,9 +130,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 73
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 72
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -150,9 +140,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 73
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 72
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -160,9 +150,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 75
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 74
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -170,9 +160,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 75
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 74
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -180,9 +170,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 76
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 75
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -190,9 +180,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 76
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 75
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -200,9 +190,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 78
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 77
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -210,9 +200,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 78
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 77
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -220,9 +210,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 79
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 78
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -230,9 +220,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, fullDisp, max_disp); at line 61
-	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 79
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 60
+	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 78
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -240,9 +230,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -250,9 +240,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -260,9 +250,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -270,9 +260,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 72
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 71
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -280,9 +270,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 72
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 71
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -290,9 +280,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 73
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 72
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -300,9 +290,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 73
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 72
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -310,9 +300,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 75
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 74
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -320,9 +310,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 75
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 74
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -330,9 +320,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 76
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 75
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -340,9 +330,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 76
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 75
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -350,9 +340,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 78
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 77
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -360,9 +350,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 78
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 77
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -370,9 +360,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 79
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 78
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -380,9 +370,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparityMap[i*width+j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, &template, stereoImage, &disparitiesToSearch, 9); at line 65
-	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 79
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparityMap[i*width+j] = bestMatchSoFar; at line 64
+	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 78
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[i*width+j];
@@ -390,8 +380,8 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -399,9 +389,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
-	and the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
+	and the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -409,9 +399,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
-	and the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
+	and the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -419,9 +409,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
-	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 72
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
+	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 71
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -429,9 +419,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
-	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 73
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
+	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 72
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -439,9 +429,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
-	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 75
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
+	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 74
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -449,9 +439,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
-	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 76
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
+	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 75
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -459,9 +449,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
-	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 78
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
+	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 77
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -469,9 +459,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
-	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 79
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
+	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 78
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j];
@@ -479,9 +469,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
-	and the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
+	and the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -489,9 +479,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
-	and the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 68
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
+	and the statement disparitiesToSearch[0] = disparityMap[(i+1)*width+j]-1; at line 67
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -499,8 +489,8 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -508,9 +498,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
-	and the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
+	and the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -518,9 +508,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
-	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 72
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
+	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 71
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -528,9 +518,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
-	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 73
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
+	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 72
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -538,9 +528,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
-	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 75
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
+	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 74
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -548,9 +538,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
-	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 76
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
+	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 75
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -558,9 +548,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
-	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 78
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
+	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 77
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -568,9 +558,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
-	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 79
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
+	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 78
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j-1];
@@ -578,9 +568,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
-	and the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 69
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
+	and the statement disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1; at line 68
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -588,8 +578,8 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -597,9 +587,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
-	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 72
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
+	and the statement disparitiesToSearch[1] = disparitiesToSearch[0]+1; at line 71
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -607,9 +597,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
-	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 73
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
+	and the statement disparitiesToSearch[2] = disparitiesToSearch[0]+2; at line 72
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -617,9 +607,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
-	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 75
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
+	and the statement disparitiesToSearch[4] = disparitiesToSearch[3]+1; at line 74
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -627,9 +617,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
-	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 76
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
+	and the statement disparitiesToSearch[5] = disparitiesToSearch[3]+2; at line 75
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -637,9 +627,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
-	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 78
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
+	and the statement disparitiesToSearch[7] = disparitiesToSearch[6]+1; at line 77
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -647,9 +637,9 @@ ADVICE: In function GetDisparityMap() in ../Disparity.c
 	do not access the same object in memory.
 
 ADVICE: In function GetDisparityMap() in ../Disparity.c
-	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-80
-	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 70
-	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 79
+	in the 'for' loop with loop variable 'j' at lines ../Disparity.c:47-79
+	for the statement disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1; at line 69
+	and the statement disparitiesToSearch[8] = disparitiesToSearch[6]+2; at line 78
 
 	Consider declaring 'disparityMap' as unsigned char * restrict disparityMap
 	to assert that lvalues disparityMap[(i+1)*width+j+1];
@@ -670,23 +660,48 @@ LOOP#2 in GetDisparityMap() fails to unroll-and-jam: Outer Loop has multiple blo
 		====== End Unroll-and-jam Result ======
 
 
+		====== Unroll-and-jam Result Summary ======
+
+LOOP#4 in GetDisparityMap() fails to unroll-and-jam: Outer Loop has multiple blocks
+
+		====== End Unroll-and-jam Result ======
+
+
+		====== Unroll-and-jam Result Summary ======
+
+LOOP#5 in GetDisparityMap() is unroll-and-jammed by a factor of 2
+	old_II = 4   new_II = 4 
+	reg_pre_before = 30 reg_pre_after = 0
+	inner loop size = 36   outer loop size = 66
+
+
+		====== End Unroll-and-jam Result ======
+
+
+		====== Unroll-and-jam Result Summary ======
+
+LOOP#7 in GetDisparityMap() fails to unroll-and-jam: Outer Loop has multiple blocks
+
+		====== End Unroll-and-jam Result ======
+
+
 Optimization summary for same-iteration parallelism (ILP)
 in GetDisparityMap()
 
-  Combining this assignment: disparitiesToSearch[1] = disparitiesToSearch[0]+1;  (line 72)
-       with this assignment: disparitiesToSearch[2] = disparitiesToSearch[0]+2;  (line 73)
-         giving this result: *(NONALIGN(&disparitiesToSearch+4)) = PACK(disparitiesToSearch[0]+1, disparitiesToSearch[0]+2);
+  Combining this assignment: disparitiesToSearch[3] = disparityMap[(i+1)*width+j-1]-1;  (line 68)
+       with this assignment: disparitiesToSearch[2] = disparitiesToSearch[0]+2;  (line 72)
+         giving this result: disparitiesToSearch[2] = PACK(disparitiesToSearch[0]+2, disparityMap[(i+1)*width+j-1]-1);
 
-  Combining this assignment: disparitiesToSearch[4] = disparitiesToSearch[3]+1;  (line 75)
-       with this assignment: disparitiesToSearch[5] = disparitiesToSearch[3]+2;  (line 76)
-         giving this result: disparitiesToSearch[4] = PACK(disparitiesToSearch[3]+1, disparitiesToSearch[3]+2);
+  Combining this assignment: disparitiesToSearch[6] = disparityMap[(i+1)*width+j+1]-1;  (line 69)
+       with this assignment: disparitiesToSearch[5] = disparitiesToSearch[3]+2;  (line 75)
+         giving this result: *(NONALIGN(&disparitiesToSearch+20)) = PACK(disparitiesToSearch[3]+2, disparityMap[(i+1)*width+j+1]-1);
 
-  Combining this assignment: disparitiesToSearch[7] = disparitiesToSearch[6]+1;  (line 78)
-       with this assignment: disparitiesToSearch[8] = disparitiesToSearch[6]+2;  (line 79)
+  Combining this assignment: disparitiesToSearch[7] = disparitiesToSearch[6]+1;  (line 77)
+       with this assignment: disparitiesToSearch[8] = disparitiesToSearch[6]+2;  (line 78)
          giving this result: *(NONALIGN(&disparitiesToSearch+28)) = PACK(disparitiesToSearch[6]+1, disparitiesToSearch[6]+2);
 
 
-There are 19 memory accesses with 132 dependences.
+There are 59 memory accesses with 736 dependences.
 
 <<NULL MIX DOMAIN>>
 

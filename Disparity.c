@@ -45,7 +45,6 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 		//TODO - This is where parallel processing should start
 		//Iterate over the columns
 		for(j = WIN_X; j < width - WIN_X - max_disp ; j++)
-//		for(j = WIN_X; j < width - WIN_X ; j++)
 		{
 			jWinStart = j - J_SIDE;
 			jWinEnd = j + J_SIDE;
@@ -89,8 +88,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 	return disparityMap;
 }
 
-//Inline this function - 'inline' keyword doesn't seem to work
-uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
+static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
 {
 	int x,y,u,v,k,bestMatchSoFar;
 
@@ -105,6 +103,7 @@ uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint
 	float denominatorRight;
 	float denominatorLeft;
 
+#pragma MUST_ITERATE(9,,2)
 	for(k = 0; k < disparitiesToSearchLength; k++)
 	{
 		if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < g_max_disp)
@@ -116,9 +115,11 @@ uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint
 			//Get the left region (the region that will be matched with the template
 
 			u = 0;
+#pragma MUST_ITERATE(WIN_Y, WIN_Y, 2)
 			for(y = iWinStart; y <= iWinEnd; y++)
 			{
 				v = jWinStart;
+#pragma MUST_ITERATE(WIN_X, WIN_X, 2)
 				for(x = jWinStart + disparitiesToSearch[k]; x <= jWinEnd + disparitiesToSearch[k]; x++)
 				{
 					//Load word for template
@@ -135,10 +136,7 @@ uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint
 
 			denominator = denominatorLeft * denominatorRight;
 
-			//			ncc = numerator * 1/sqrtsp(denominator);
-			ncc  = numerator * rsqrtsp(denominator);
-			//			ncc  = numerator * _rsqrdp(denominator);
-			//			ncc = numerator/sqrtsp(denominator);
+			ncc  = numerator * rsqrtsp(denominator); //numerator * 1/sqrt(denominator)
 
 			if(ncc > prevCorr)
 			{
