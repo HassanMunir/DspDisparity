@@ -1,5 +1,5 @@
-#include "header/Disparity.h"
-#include "header/Config.h"
+#include "../header/Disparity.h"
+#include "../header/Config.h"
 #include "stdint.h"
 #include "stdio.h"
 
@@ -19,9 +19,6 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 
 	uint8_t* disparityMap = Memory_alloc(NULL,  (height*width), 0, NULL);
 
-#if PRINT_DETAILS == 1
-	printf("Get Disparity Map called\n");
-#endif
 
 	g_winx = WIN_X;
 	g_winy = WIN_Y;
@@ -36,8 +33,25 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 
 	int bottomLine = height - WIN_Y;
 
+	int* fullDisp = Memory_alloc(NULL,sizeof(int)*max_disp, 0,NULL);
+
+	for(k = 0; k < max_disp; k++)
+		fullDisp[k] = k;
+
+
+	iWinStart = bottomLine - I_SIDE;
+	iWinEnd = bottomLine + I_SIDE;
+
+	for(j = WIN_X; j < width - WIN_X - max_disp ; j++)
+	{
+		jWinStart = j - J_SIDE;
+		jWinEnd = j + J_SIDE;
+
+		disparityMap[bottomLine*width + j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, fullDisp, max_disp);
+	}
+
 	//Iterate over the rows
-	for(i = height - WIN_Y; i > WIN_Y; i--)
+	for(i = height - WIN_Y - 1; i > WIN_Y; i--)
 	{
 		iWinStart = i - I_SIDE;
 		iWinEnd = i + I_SIDE;
@@ -49,24 +63,14 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 			jWinStart = j - J_SIDE;
 			jWinEnd = j + J_SIDE;
 
-			//TODO - Move this out of the loop
-			if(i == bottomLine){
+			uint8_t pixel = disparityMap[ ((i + 1 )* width) + (j- 1)] - 1;
+			uint8_t pixel1 = disparityMap[ ((i + 1 ) * width) + (j - 2)] - 1;
+			uint8_t pixel2 = disparityMap[ ((i + 1 ) * width) + (j )] - 1;
 
-				int* fullDisp = Memory_alloc(NULL,sizeof(int)*max_disp, 0,NULL);
 
-				for(k = 0; k < max_disp; k++)
-					fullDisp[k] = k;
-
-				disparityMap[i*width + j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, fullDisp, max_disp);
-
-			} else {
-
-				disparityMap[i*width + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
-			}
-
-			disparitiesToSearch[0] = disparityMap[ ((i + 1 )* width) + j] - 1;
-			disparitiesToSearch[3] = disparityMap[ ((i + 1 ) * width) + (j - 1)] - 1;
-			disparitiesToSearch[6] = disparityMap[ ((i + 1 ) * width) + (j + 1)] - 1;
+			disparitiesToSearch[0] = pixel;
+			disparitiesToSearch[3] = pixel1;
+			disparitiesToSearch[6] = pixel2;
 
 			disparitiesToSearch[1] = disparitiesToSearch[0] + 1;
 			disparitiesToSearch[2] = disparitiesToSearch[0] + 2;
@@ -76,15 +80,11 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 
 			disparitiesToSearch[7] = disparitiesToSearch[6] + 1;
 			disparitiesToSearch[8] = disparitiesToSearch[6] + 2;
-		}
-#if PRINT_DETAILS == 1
-		printf("Row %d processed\n", i);
-#endif
-	}
-#if PRINT_DETAILS == 1
-	printf("Get Disparity Map exiting\n");
-#endif
 
+			disparityMap[i*width + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
+
+		}
+	}
 	return disparityMap;
 }
 

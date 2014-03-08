@@ -5,7 +5,7 @@
  *      Editor		: 	Hassan Munir 											*/
 
 #include <xdc/cfg/global.h>
-#include "header/Disparity.h"
+#include "../header/Disparity.h"
 
 #include <ti/ndk/inc/netmain.h>
 #include "ti/platform/platform.h"

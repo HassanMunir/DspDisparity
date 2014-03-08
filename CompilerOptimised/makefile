@@ -4,17 +4,17 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := F:/ti/ccsv5/tools/compiler/c6000_7.4.6
+CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/c6000_7.4.7
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
+"./src/RecieveImage.obj" \
+"./src/Disparity.obj" \
 "./resourcemgr.obj" \
 "./platform_osal.obj" \
-"./RecieveImage.obj" \
 "./Initialise.obj" \
-"./Disparity.obj" \
 -l"libc.a" \
--l"F:/ti/mathlib_c66x_3_0_1_1/lib/mathlib.ae66" \
+-l"C:/ti/mathlib_c66x_3_0_1_1/lib/mathlib.ae66" \
 
 -include ../makefile.init
 
@@ -24,7 +24,9 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include src/subdir_vars.mk
 -include subdir_rules.mk
+-include src/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -119,7 +121,7 @@ all: Disparity.out
 Disparity.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/bin/cl6x" -mv6600 --abi=eabi -O3 --pch --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance_file=C:\PerformanceAdvice.txt --advice:performance=all --advice:performance_dir=C:\ -z -m"Disparity.map" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/lib" -i"F:/ti/mathlib_c66x_3_0_1_1/lib" -i"F:/ti/ccsv5/tools/compiler/c6000_7.4.6/include" --reread_libs --warn_sections --xml_link_info="Disparity_linkInfo.xml" --rom_model -o "Disparity.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/bin/cl6x" -mv6600 --abi=eabi -O3 --symdebug:none --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all -z -m"Disparity.map" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/lib" -i"C:/ti/mathlib_c66x_3_0_1_1/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/include" --reread_libs --warn_sections --xml_link_info="Disparity_linkInfo.xml" --rom_model -o "Disparity.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -127,8 +129,8 @@ Disparity.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(C6000_EXECUTABLE_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(GEN_OPTS__QUOTED)$(GEN_CMDS__QUOTED) "Disparity.out"
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
-	-$(RM) "Disparity.pp" "Initialise.pp" "RecieveImage.pp" "platform_osal.pp" "resourcemgr.pp" 
-	-$(RM) "Disparity.obj" "Initialise.obj" "RecieveImage.obj" "platform_osal.obj" "resourcemgr.obj" 
+	-$(RM) "Initialise.pp" "platform_osal.pp" "resourcemgr.pp" "src\Disparity.pp" "src\RecieveImage.pp" 
+	-$(RM) "Initialise.obj" "platform_osal.obj" "resourcemgr.obj" "src\Disparity.obj" "src\RecieveImage.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
