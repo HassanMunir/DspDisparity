@@ -26,5 +26,5 @@
 *.hex
 
 # Folders
-Debug/
-
+**/Debug
+**/CompilerOptimised

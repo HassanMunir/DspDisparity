@@ -20,7 +20,7 @@ ExcludeFromBuild=true
 ;  directories.
 ;
 ["Compiler" Settings: "Executable"]
-Options=-i"F:/ti/pdk_C6678_1_1_2_6/packages" -i"F:/ti/ndk_2_23_00_00/packages" -i"F:/ti/bios_6_35_04_50/packages" -i"F:/ti/mcsdk_2_01_02_06/demos" -i"F:/ti/ccsv5/ccs_base" -i"F:/ti/uia_1_03_01_08/packages" -i"F:/ti/ipc_1_24_03_32/packages" -i"F:/ti/mathlib_c66x_3_0_1_1/packages" -i"F:/ti/omp_1_01_03_02/packages" -i"F:/ti/xdctools_3_25_04_88/packages" -i"C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised" 
+Options=-i"C:/ti/pdk_C6678_1_1_2_6/packages" -i"C:/ti/ndk_2_23_00_00/packages" -i"C:/ti/bios_6_35_04_50/packages" -i"C:/ti/mcsdk_2_01_02_06/demos" -i"C:/ti/ccsv5/ccs_base" -i"C:/ti/uia_1_03_01_08/packages" -i"C:/ti/ipc_1_24_03_32/packages" -i"C:/ti/mathlib_c66x_3_0_1_1/packages" -i"C:/ti/omp_1_01_03_02/packages" -i"C:/ti/xdctools_3_25_04_88/packages" -i"C:\Users\Hassan\SkyDrive\Documents\University\Year 4\Individual Project\Workspace\Disparity\CompilerOptimised" 
 
 [External Makefile]
 ExtMakefile=../../package.bld
@@ -36,7 +36,7 @@ Source="../../C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Pr
 
 ["../../package.bld" Settings: "Executable"]
 UseCustomBuild=true
-CustomBuildCmd=F:\ti\xdctools_3_25_04_88\xdc.exe Disparity.xe66
+CustomBuildCmd=C:\ti\xdctools_3_25_04_88\xdc.exe Disparity.xe66
 
 ; if no custom "clean" command is specified, rebuild all deletes the
 ; following files before running the build command above.  
@@ -50,7 +50,7 @@ CustomBuildOutput="Disparity.xe66"
 ;  Instead we only clean out those files associated with the target used to
 ;  build the executable.
 ;
-CustomCleanCmd=F:\ti\xdctools_3_25_04_88\xdc.exe clean,e66
+CustomCleanCmd=C:\ti\xdctools_3_25_04_88\xdc.exe clean,e66
 ;
 ;  Always run the xdc command since this command is the one that tracks
 ;  dependencies

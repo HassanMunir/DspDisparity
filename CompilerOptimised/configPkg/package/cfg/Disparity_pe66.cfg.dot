@@ -472,6 +472,6 @@ digraph configuration {
     ti_sysbios_family_c64p_tci6488__bot -> ti_targets_elf_C66__1_0_7__2_0 [ltail=cluster38];
     ti_targets_elf_C66__1_0_7__2_0 [shape=record,label="ti.targets.elf.C66|1,0,7.2,0",style=filled, fillcolor=lightgrey];
     ti_sysbios_utils__bot -> ti_targets_elf_C66__1_0_7__2_0 [ltail=cluster39];
-    ti_targets_elf_C66__1_0_7__4_6 [shape=record,label="ti.targets.elf.C66|1,0,7.4,6",style=filled, fillcolor=lightgrey];
-    configPkg__top -> ti_targets_elf_C66__1_0_7__4_6 [ltail=cluster46];
+    ti_targets_elf_C66__1_0_7__4_7 [shape=record,label="ti.targets.elf.C66|1,0,7.4,7",style=filled, fillcolor=lightgrey];
+    configPkg__top -> ti_targets_elf_C66__1_0_7__4_7 [ltail=cluster46];
 }
