@@ -7,65 +7,53 @@
 #include <ti/omp/omp.h>
 #include <xdc/runtime/Memory.h>
 
-int g_winx;
-int g_winy;
-int g_max_disp;
-int g_width;
-int g_height;
-
 // i, y, v refer to rows
 // j, x, u refer to cols
-uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int max_disp){
+uint8_t* GetDisparityMap(StereoImage* stereoImage){
 
-	uint8_t* disparityMap = Memory_alloc(NULL,  (height*width), 0, NULL);
-
-
-	g_winx = WIN_X;
-	g_winy = WIN_Y;
-	g_max_disp = max_disp;
-	g_width = width;
-	g_height = height;
+	uint8_t* disparityMap = Memory_alloc(NULL,  (HEIGHT*WIDTH), 8, NULL);
 
 	uint8_t template[WIN_X * WIN_Y];
+
 	int disparitiesToSearch[9];
 
 	int k, i, j, iWinStart, iWinEnd, jWinStart, jWinEnd;
 
-	int bottomLine = height - WIN_Y;
+	int bottomLine = HEIGHT - WIN_Y;
 
-	int* fullDisp = Memory_alloc(NULL,sizeof(int)*max_disp, 0,NULL);
+	int* fullDisp = Memory_alloc(NULL,sizeof(int)* MAX_DISP, 0,NULL);
 
-	for(k = 0; k < max_disp; k++)
+	for(k = 0; k < MAX_DISP; k++)
 		fullDisp[k] = k;
 
 
 	iWinStart = bottomLine - I_SIDE;
 	iWinEnd = bottomLine + I_SIDE;
 
-	for(j = WIN_X; j < width - WIN_X - max_disp ; j++)
+	for(j = WIN_X; j < WIDTH - WIN_X - MAX_DISP ; j++)
 	{
 		jWinStart = j - J_SIDE;
 		jWinEnd = j + J_SIDE;
 
-		disparityMap[bottomLine*width + j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, fullDisp, max_disp);
+		disparityMap[bottomLine * WIDTH + j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, fullDisp, MAX_DISP);
 	}
 
 	//Iterate over the rows
-	for(i = height - WIN_Y - 1; i > WIN_Y; i--)
+	for(i = HEIGHT - WIN_Y - 1; i > WIN_Y; i--)
 	{
 		iWinStart = i - I_SIDE;
 		iWinEnd = i + I_SIDE;
 
 		//TODO - This is where parallel processing should start
 		//Iterate over the columns
-		for(j = WIN_X; j < width - WIN_X - max_disp ; j++)
+		for(j = WIN_X; j < WIDTH - WIN_X - MAX_DISP ; j++)
 		{
 			jWinStart = j - J_SIDE;
 			jWinEnd = j + J_SIDE;
 
-			uint8_t pixel = disparityMap[ ((i + 1 )* width) + (j- 1)] - 1;
-			uint8_t pixel1 = disparityMap[ ((i + 1 ) * width) + (j - 2)] - 1;
-			uint8_t pixel2 = disparityMap[ ((i + 1 ) * width) + (j )] - 1;
+			uint8_t pixel = disparityMap[ ((i + 1 )* WIDTH) + (j- 1)] - 1;
+			uint8_t pixel1 = disparityMap[ ((i + 1 ) * WIDTH) + (j - 2)] - 1;
+			uint8_t pixel2 = disparityMap[ ((i + 1 ) * WIDTH) + (j )] - 1;
 
 
 			disparitiesToSearch[0] = pixel;
@@ -81,7 +69,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage, int width, int height, int ma
 			disparitiesToSearch[7] = disparitiesToSearch[6] + 1;
 			disparitiesToSearch[8] = disparitiesToSearch[6] + 2;
 
-			disparityMap[i*width + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
+			disparityMap[i* WIDTH + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
 
 		}
 	}
@@ -103,33 +91,32 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 	float denominatorRight;
 	float denominatorLeft;
 
-#pragma MUST_ITERATE(9,,2)
 	for(k = 0; k < disparitiesToSearchLength; k++)
 	{
-		if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < g_max_disp)
+		if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < MAX_DISP)
 		{
 			numerator = 0;
 			denominator = 0;
 			denominatorRight=0;
 			denominatorLeft=0;
 			u = 0;
-#pragma MUST_ITERATE(WIN_Y, WIN_Y, 2)
+
 			for(y = iWinStart; y <= iWinEnd; y++)
 			{
 				v = jWinStart;
-#pragma MUST_ITERATE(WIN_X, WIN_X, WIN_X)
+
 				for(x = jWinStart + disparitiesToSearch[k]; x <= jWinEnd + disparitiesToSearch[k]; x++)
 				{
 					//Load word for template
 					//Load word for match region
 					//Multiply word
-					uint8_t templatePixel = stereoImage->Right[y* g_width + v];
-					uint8_t matchPixel = stereoImage->Left[y*g_width + x];
+					uint8_t templatePixel = stereoImage->Right[y * WIDTH + v];
+					uint8_t matchPixel = stereoImage->Left[y * WIDTH + x];
 					numerator += (templatePixel * matchPixel);
 					denominatorLeft += (matchPixel * matchPixel);
 					denominatorRight += (templatePixel * templatePixel);
 					v++;
-				}u++;
+				} u++;
 			}
 
 			denominator = denominatorLeft * denominatorRight;

@@ -8,6 +8,9 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
+#define HEIGHT	279
+#define	WIDTH	960
+
 #define MAX_DISP	100
 #define MIN_DISP	0
 

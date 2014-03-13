@@ -6,12 +6,14 @@
 
 #include <xdc/cfg/global.h>
 #include "../header/Disparity.h"
+#include "../header/Config.h"
 
 #include <ti/ndk/inc/netmain.h>
 #include "ti/platform/platform.h"
 #include <ti/ndk/inc/serrno.h>
 #include <xdc/runtime/Memory.h>
 #include <xdc/runtime/System.h>
+
 
 /* BIOS6 include */
 #include <ti/sysbios/BIOS.h>
@@ -26,9 +28,6 @@
 #include <xdc/runtime/Timestamp.h>
 
 #define TCP_BUFSIZE 1500
-//#define TCP_BUFSIZE 960
-#define UDP_BUFSIZ 1020
-#define UDP_BUFSIZ_recv 1020
 
 int SendRequestForDimensions(SOCKET s);
 int SendImage(SOCKET s, uint8_t* image, int size);
@@ -58,7 +57,7 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	to.tv_sec = 3;
 	to.tv_usec = 0;
 
-	int height, width, disparity, filesize;
+	int filesize;
 
 	g_transmissionError = 0;
 
@@ -67,16 +66,11 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 
 	while(1)
 	{
-		height = ReceiveInt32(s);
-		width = ReceiveInt32(s);
-		disparity = ReceiveInt32(s);
-
 		if(g_transmissionError == 1)
 			break;
 
-		printf("Dimensions received [%d x %d]\n", width, height);
 
-		filesize = width * height;
+		filesize = WIDTH * HEIGHT;
 
 		StereoImage images = RecieveStereoImage(s, filesize);
 
@@ -92,18 +86,10 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 		Timestamp_getFreq(&freq);
 
 		uint32_t start = Timestamp_get32();
-
-		uint8_t* image = GetDisparityMap(&images, width, height,disparity);
-
+		uint8_t* image = GetDisparityMap(&images);
 		uint32_t timeTaken = Timestamp_get32() - start;
 
 		printf("[%f s]\n", (double)timeTaken/freq.lo);
-
-		printf("Sending disparity map dimensions..\n");
-		bytesSent = SendInt32(s, height);
-		bytesSent += SendInt32(s, width);
-		if(bytesSent > 0)
-			printf("Sent disparity map dimensions [%d bytes]\n", bytesSent);
 
 		printf("Sending disparity map..\n");
 		bytesSent = SendImage(s, image, filesize);
@@ -112,6 +98,7 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 
 		Memory_free(NULL, images.Left, filesize);
 		Memory_free(NULL, images.Right, filesize);
+		Memory_free(NULL, image, filesize);
 	}
 
 	printf("Connection closed\n");
