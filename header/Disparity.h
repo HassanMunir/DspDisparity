@@ -17,5 +17,6 @@ typedef struct stereo {
 
 uint8_t* GetDisparityMap(StereoImage* stereoImage);
 static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength);
+float NccCore(StereoImage *stereoImage, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
 
 #endif /* DISPARITY_H_ */

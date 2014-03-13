@@ -78,7 +78,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage){
 
 static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
 {
-	int x,y,u,v,k,bestMatchSoFar;
+	int k,bestMatchSoFar;
 
 	//Max possible result of multiplying two pixels is 255*255 = 65025
 	//accumulation win_x * win_y number of times
@@ -86,42 +86,17 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 	//which can fit in an int -- but it doesn't work... ?
 	float prevCorr = 0.0;
 	float ncc = 0.0;
-	float numerator;
-	float denominator;
-	float denominatorRight;
-	float denominatorLeft;
+
+	int jWinStartMatch, jWinEndMatch;
 
 	for(k = 0; k < disparitiesToSearchLength; k++)
 	{
 		if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < MAX_DISP)
 		{
-			numerator = 0;
-			denominator = 0;
-			denominatorRight=0;
-			denominatorLeft=0;
-			u = 0;
+			jWinStartMatch = jWinStart + disparitiesToSearch[k];
+			jWinEndMatch = jWinEnd + disparitiesToSearch[k];
 
-			for(y = iWinStart; y <= iWinEnd; y++)
-			{
-				v = jWinStart;
-
-				for(x = jWinStart + disparitiesToSearch[k]; x <= jWinEnd + disparitiesToSearch[k]; x++)
-				{
-					//Load word for template
-					//Load word for match region
-					//Multiply word
-					uint8_t templatePixel = stereoImage->Right[y * WIDTH + v];
-					uint8_t matchPixel = stereoImage->Left[y * WIDTH + x];
-					numerator += (templatePixel * matchPixel);
-					denominatorLeft += (matchPixel * matchPixel);
-					denominatorRight += (templatePixel * templatePixel);
-					v++;
-				} u++;
-			}
-
-			denominator = denominatorLeft * denominatorRight;
-
-			ncc  = numerator * rsqrtsp(denominator); //numerator * 1/sqrt(denominator)
+			ncc = NccCore(stereoImage, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
 
 			if(ncc > prevCorr)
 			{
