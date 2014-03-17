@@ -126,7 +126,7 @@ uint8_t* RecieveImage(SOCKET s, int filesize)
 	uint8_t* image;
 	uint8_t buffer[TCP_BUFSIZE];
 
-	image = Memory_alloc(NULL, filesize, 0, NULL);
+	image = Memory_alloc(NULL, filesize, 8, NULL);
 
 	while(bytesReceived < filesize)
 	{

@@ -98,14 +98,14 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 			jWinStartMatch = jWinStart + disparitiesToSearch[k];
 			jWinEndMatch = jWinEnd + disparitiesToSearch[k];
 
-			ncc = NccCoreLA(
-					stereoImage->Left,
-					stereoImage->Right,
-					iWinStart, WIN_Y,
-					jWinStart,
-					jWinStartMatch,
-					WIN_X,
-					WIDTH);
+//			ncc = NccCoreLA(
+//					stereoImage->Left,
+//					stereoImage->Right,
+//					iWinStart, WIN_Y,
+//					jWinStart,
+//					jWinStartMatch,
+//					WIN_X,
+//					WIDTH);
 
 
 			ncc = NccCore(stereoImage, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);

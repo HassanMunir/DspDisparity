@@ -12,15 +12,12 @@
 
 float NccCore(StereoImage *stereoImage, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch)
 {
-	float ncc = 0;
+	float ncc, denominator;
 	float numerator = 0;
-	float denominator = 0;
 	float denominatorRight = 0;
 	float denominatorLeft = 0;
 
-	int x,y,u,v;
-
-	u = 0;
+	int x,y,v;
 
 //Telling the compiler to optimise this makes it even slower
 //	_nassert(((int) (stereoImage->Left) & 8)==0);
@@ -39,7 +36,7 @@ float NccCore(StereoImage *stereoImage, int iWinStart, int iWinEnd, int jWinStar
 			denominatorLeft += (matchPixel * matchPixel);
 			denominatorRight += (templatePixel * templatePixel);
 			v++;
-		} u++;
+		}
 	}
 
 	denominator = denominatorLeft * denominatorRight;

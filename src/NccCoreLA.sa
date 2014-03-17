@@ -5,7 +5,6 @@ NccCoreLA:	.cproc	left, right, iWinStart, winY, jStartTemp, jStartMatch, winX, w
 
 			zero	ncc
 			zero	num
-			zero	den
 			zero	denL
 			zero	denR
 
@@ -21,8 +20,8 @@ jLoop:		.trip	11
 			ADD		baseAddr, v, tAddr
 			ADD		baseAddr, x, mAddr
 
-			LDBU	*left[tAddr], tPixel
-			LDBU	*right[mAddr], mPixel
+			LDBU	*right[tAddr], tPixel
+			LDBU	*left[mAddr], mPixel
 			MPYU	tPixel, mPixel, numProd
 			ADD		numProd, num, num
 
@@ -32,6 +31,8 @@ jLoop:		.trip	11
 			MPYU	tPixel, tPixel, denRprod
 			ADD		denRprod, denR, denR
 
+			ADD		v, 1, v
+
 [winX]	SUB		winX, 1, winX
 [winX]	B		jLoop
 
@@ -40,8 +41,13 @@ jLoop:		.trip	11
 [winY]	B		iLoop
 
 	MPYU		denL, denR, den
-	RCPSP	 	den, recip
+;	INTSPU		den, den
+
+	MVK			4, den
+
+	RCPSP 	 	den, recip
 	MPYU		num, num, num
+;	INTSPU		num, num
 
 
 	MPYSP		num, recip, ncc
