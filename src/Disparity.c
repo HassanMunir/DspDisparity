@@ -7,6 +7,8 @@
 #include <ti/omp/omp.h>
 #include <xdc/runtime/Memory.h>
 
+extern NccCoreLA(uint8_t* leftImage, uint8_t* rightImage, int iWinStart, int winY, int jWinStartTemplate, int jWinStartMatch, int winX, int width);
+
 // i, y, v refer to rows
 // j, x, u refer to cols
 uint8_t* GetDisparityMap(StereoImage* stereoImage){
@@ -95,6 +97,16 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 		{
 			jWinStartMatch = jWinStart + disparitiesToSearch[k];
 			jWinEndMatch = jWinEnd + disparitiesToSearch[k];
+
+			ncc = NccCoreLA(
+					stereoImage->Left,
+					stereoImage->Right,
+					iWinStart, WIN_Y,
+					jWinStart,
+					jWinStartMatch,
+					WIN_X,
+					WIDTH);
+
 
 			ncc = NccCore(stereoImage, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
 

@@ -1,0 +1,50 @@
+	.global NccCoreLA
+
+NccCoreLA:	.cproc	leftImage, rightImage, iWinStart, winY, jWinStartTemplate, jWinStartMatch, winX, width
+			.reg	v, u, x, y,  ncc, num, numProd, den, recip, denL, denLprod, denR, denRprod, templatePixel, matchPixel, currentCol, currentPixel, templateAddr, matchAddr
+
+			zero	ncc
+			zero	num
+			zero	den
+			zero	denL
+			zero	denR
+
+
+iLoop:
+			ADD		iWinStart, winY, y
+			MPY		width, y, currentCol
+			MV		jWinStartTemplate, v
+jLoop:
+			ADD		jWinStartMatch, winX, x
+
+			ADD		currentCol, v, templateAddr
+			ADD		currentCol, x, matchAddr
+
+
+			LDBU	*leftImage[templateAddr], templatePixel
+			LDBU	*rightImage[matchAddr], matchPixel
+			MPYU	templatePixel, matchPixel, numProd
+			ADD		numProd, num, num
+
+			MPYU	matchPixel, matchPixel, denLprod
+			ADD		denLprod, denL, denL
+
+			MPYU	templatePixel, templatePixel, denRprod
+			ADD		denRprod, denR, denR
+
+[winX]	SUB		winX, 1, winX
+[winX]	B		jLoop
+
+
+[winY]	SUB		winY, 1, winY
+[winY]	B		iLoop
+
+	MPYU		denL, denR, den
+	RCPSP	 	den, recip
+	MPYU		num, num, num
+
+
+	MPYSP		num, recip, ncc
+
+	.return 	ncc
+	.endproc
