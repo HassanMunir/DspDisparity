@@ -57,7 +57,7 @@
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.PCH.1963065357" name="Automatically create/use precompiled headers (--pch)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.PCH" value="false" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.OPTIMIZER_INTERLIST.538975843" name="Generate optimized source interlisted assembly (--optimizer_interlist, -os)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.OPTIMIZER_INTERLIST" value="false" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.KEEP_ASM.54928715" name="Keep the generated assembly language (.asm) file (--keep_asm, -k)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.KEEP_ASM" value="true" valueType="boolean"/>
-								<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.ASM_LISTING.685390215" name="Generate listing file (--asm_listing, -al)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.ASM_LISTING" value="true" valueType="boolean"/>
+								<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.ASM_LISTING.685390215" name="Generate listing file (--asm_listing, -al)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.ASM_LISTING" value="false" valueType="boolean"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__C_SRCS.317509895" multipleOfType="false" name="C Sources" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__C_SRCS"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__CPP_SRCS.790984033" multipleOfType="false" name="C++ Sources" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__CPP_SRCS"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__ASM_SRCS.1059996422" multipleOfType="false" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__ASM_SRCS"/>
@@ -99,6 +99,16 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="com.ti.ccstudio.buildDefinitions.C6000.Debug.1821086713.1678810375" name="NccCore.c" rcbsApplicability="disable" resourcePath="src/NccCore.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C6000_7.4.exe.compilerDebug.1761888206.1550547711">
+						<tool id="com.ti.ccstudio.buildDefinitions.C6000_7.4.exe.compilerDebug.1761888206.1550547711" name="C6000 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.exe.compilerDebug.1761888206">
+							<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.OPT_LEVEL.9389753" name="Optimization level (--opt_level, -O)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.OPT_LEVEL" value="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.OPT_LEVEL.3" valueType="enumerated"/>
+							<option id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.OPT_FOR_SPEED.150839858" name="Optimize for speed (--opt_for_speed, -mf)" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.OPT_FOR_SPEED" value="com.ti.ccstudio.buildDefinitions.C6000_7.4.compilerID.OPT_FOR_SPEED.5" valueType="enumerated"/>
+							<inputType id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__C_SRCS.606988016" multipleOfType="false" name="C Sources" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__C_SRCS"/>
+							<inputType id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__CPP_SRCS.1812120502" multipleOfType="false" name="C++ Sources" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__CPP_SRCS"/>
+							<inputType id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__ASM_SRCS.438280169" multipleOfType="false" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__ASM_SRCS"/>
+							<inputType id="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__ASM2_SRCS.1889787695" multipleOfType="false" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.4.compiler.inputType__ASM2_SRCS"/>
+						</tool>
+					</fileInfo>
 					<sourceEntries>
 						<entry excluding="Test1.c|Test1.cpp|mcip_process.h|C6678.cmd|helloWorld 1.cfg|C6678_unified.cmd|mcip_process.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>

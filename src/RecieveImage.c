@@ -64,18 +64,17 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	setsockopt(s, SOL_SOCKET, SO_SNDTIMEO, &to, sizeof(to));
 	setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &to, sizeof(to));
 
-	while(1)
-	{
-		if(g_transmissionError == 1)
-			break;
+
+//		if(g_transmissionError == 1)
+//			break;
 
 
 		filesize = WIDTH * HEIGHT;
 
 		StereoImage images = RecieveStereoImage(s, filesize);
 
-		if(g_transmissionError == 1)
-			break;
+//		if(g_transmissionError == 1)
+//			break;
 
 		int bytesSent = 0;
 
@@ -99,11 +98,8 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 		Memory_free(NULL, images.Left, filesize);
 		Memory_free(NULL, images.Right, filesize);
 		Memory_free(NULL, image, filesize);
-	}
 
-	printf("Connection closed\n");
 
-	fdClose(s);
 	return -1;
 }
 

@@ -41,7 +41,11 @@ float NccCore(StereoImage *stereoImage, int iWinStart, int iWinEnd, int jWinStar
 
 	denominator = denominatorLeft * denominatorRight;
 
-	ncc  = (numerator * numerator) * (1/denominator); //rsqrtsp(denominator); //numerator * 1/sqrt(denominator)
+
+//	ncc = numerator * 1/(sqrtsp(denominator));
+//	ncc = numerator * rsqrtsp(denominator);
+
+	ncc  = (numerator * numerator) * (1/denominator);
 
 	return ncc;
 }

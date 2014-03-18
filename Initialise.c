@@ -258,29 +258,6 @@ int StackTest() {
 		goto main_exit;
 	}
 
-//	//
-//	// THIS MUST BE THE ABSOLUTE FIRST THING DONE IN AN APPLICATION!!
-//	//
-//	rc = NC_SystemOpen(NC_PRIORITY_LOW, NC_OPMODE_INTERRUPT);
-//	if (rc) {
-//		printf("NC_SystemOpen Failed (%d)\n", rc);
-//		for (;;)
-//			;
-//	}
-//
-//	// Print out our banner
-//	printf(VerStr);
-//
-//	//
-//	// Create and build the system configuration from scratch.
-//	//
-//
-//	// Create a new configuration
-//	hCfg = CfgNew();
-//	if (!hCfg) {
-//		printf("Unable to create configuration\n");
-//		goto main_exit;
-//	}
 
 	// We better validate the length of the supplied names
 	if (strlen(DomainName) >= CFG_DOMAIN_MAX

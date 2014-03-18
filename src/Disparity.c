@@ -9,6 +9,10 @@
 
 extern NccCoreLA(uint8_t* leftImage, uint8_t* rightImage, int iWinStart, int winY, int jWinStartTemplate, int jWinStartMatch, int winX, int width);
 
+extern float NccCore(StereoImage *stereoImage, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
+
+extern int GetDisparitiesUnique(int* out, int* in);
+
 // i, y, v refer to rows
 // j, x, u refer to cols
 uint8_t* GetDisparityMap(StereoImage* stereoImage){
@@ -18,6 +22,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage){
 	uint8_t template[WIN_X * WIN_Y];
 
 	int disparitiesToSearch[9];
+	int disparitiesToSearchUnique[9];
 
 	int k, i, j, iWinStart, iWinEnd, jWinStart, jWinEnd;
 
@@ -71,7 +76,12 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage){
 			disparitiesToSearch[7] = disparitiesToSearch[6] + 1;
 			disparitiesToSearch[8] = disparitiesToSearch[6] + 2;
 
-			disparityMap[i* WIDTH + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
+			int count = GetDisparitiesUnique(disparitiesToSearchUnique, disparitiesToSearch);
+
+			disparityMap[i* WIDTH + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearchUnique,count);
+
+
+			//			disparityMap[i* WIDTH + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
 
 		}
 	}
@@ -93,29 +103,28 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 
 	for(k = 0; k < disparitiesToSearchLength; k++)
 	{
-		if(disparitiesToSearch[k] > MIN_DISP && disparitiesToSearch[k] < MAX_DISP)
+
+		jWinStartMatch = jWinStart + disparitiesToSearch[k];
+		jWinEndMatch = jWinEnd + disparitiesToSearch[k];
+
+		//			ncc = NccCoreLA(
+		//					stereoImage->Left,
+		//					stereoImage->Right,
+		//					iWinStart, WIN_Y,
+		//					jWinStart,
+		//					jWinStartMatch,
+		//					WIN_X,
+		//					WIDTH);
+
+
+		ncc = NccCore(stereoImage, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
+
+		if(ncc > prevCorr)
 		{
-			jWinStartMatch = jWinStart + disparitiesToSearch[k];
-			jWinEndMatch = jWinEnd + disparitiesToSearch[k];
-
-//			ncc = NccCoreLA(
-//					stereoImage->Left,
-//					stereoImage->Right,
-//					iWinStart, WIN_Y,
-//					jWinStart,
-//					jWinStartMatch,
-//					WIN_X,
-//					WIDTH);
-
-
-			ncc = NccCore(stereoImage, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
-
-			if(ncc > prevCorr)
-			{
-				prevCorr = ncc;
-				bestMatchSoFar = disparitiesToSearch[k];
-			}
+			prevCorr = ncc;
+			bestMatchSoFar = disparitiesToSearch[k];
 		}
+
 	}
 	return bestMatchSoFar;
 }
