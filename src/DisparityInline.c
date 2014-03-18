@@ -21,7 +21,6 @@ uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg){
 	int k, i, j, x, y , v, l, q;
 	int iWinStart, iWinEnd, jWinStart, jWinEnd, jWinStartMatch, jWinEndMatch, currentBestMatch;
 	int uniqueCount, uniqueExists;
-	int tempForSwap;
 
 	float prevCorr, ncc, denLeft, denRight, den, num;
 
@@ -124,7 +123,6 @@ uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg){
 					}
 				}
 			}
-
 
 
 			prevCorr = 0;

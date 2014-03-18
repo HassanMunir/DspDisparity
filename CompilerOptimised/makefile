@@ -125,7 +125,7 @@ all: Disparity.out
 Disparity.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/bin/cl6x" -mv6600 --abi=eabi -O3 --symdebug:none --diag_warning=225 --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all -z -m"Disparity.map" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/lib" -i"C:/ti/mathlib_c66x_3_0_1_1/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/include" --reread_libs --warn_sections --xml_link_info="Disparity_linkInfo.xml" --rom_model -o "Disparity.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/bin/cl6x" -mv6600 --abi=eabi -O3 --symdebug:none --diag_warning=225 --optimizer_interlist --openmp --opt_for_speed=5 --gen_opt_info=2 -k --advice:performance=all -z -m"Disparity.map" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/lib" -i"C:/ti/mathlib_c66x_3_0_1_1/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.7/include" --reread_libs --warn_sections --xml_link_info="Disparity_linkInfo.xml" --rom_model -o "Disparity.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
