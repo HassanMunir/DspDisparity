@@ -27,6 +27,9 @@
 #include <xdc/runtime/Types.h>
 #include <xdc/runtime/Timestamp.h>
 
+extern uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg);
+
+
 #define TCP_BUFSIZE 1500
 
 int SendRequestForDimensions(SOCKET s);
@@ -35,6 +38,7 @@ int ByteArrayToInt32(void* array, int length);
 uint8_t* RecieveImage(SOCKET s, int filesize);
 StereoImage RecieveStereoImage(SOCKET s, int filesize);
 int SendInt32(SOCKET s, int dim);
+
 
 int g_transmissionError = 0;
 
@@ -65,40 +69,42 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &to, sizeof(to));
 
 
-//		if(g_transmissionError == 1)
-//			break;
+	//		if(g_transmissionError == 1)
+	//			break;
 
 
-		filesize = WIDTH * HEIGHT;
+	filesize = WIDTH * HEIGHT;
 
-		StereoImage images = RecieveStereoImage(s, filesize);
+	StereoImage images = RecieveStereoImage(s, filesize);
 
-//		if(g_transmissionError == 1)
-//			break;
+	//		if(g_transmissionError == 1)
+	//			break;
 
-		int bytesSent = 0;
+	int bytesSent = 0;
 
-		//CALCULATIONS
+	//CALCULATIONS
 
-		Types_FreqHz freq;
+	Types_FreqHz freq;
 
-		Timestamp_getFreq(&freq);
+	Timestamp_getFreq(&freq);
 
-		uint32_t start = Timestamp_get32();
-		uint8_t* image = GetDisparityMap(&images);
-		uint32_t timeTaken = Timestamp_get32() - start;
+	uint32_t start = Timestamp_get32();
+	uint8_t* image = GetDisparityMap(&images);
 
-		printf("[%f s]\n", (double)timeTaken/freq.lo);
+//	uint8_t* image = GetDisparityMapInline(images.Left, images.Right);
 
-		printf("Sending disparity map..\n");
-		bytesSent = SendImage(s, image, filesize);
-		if(bytesSent > 0)
-			printf("Sent disparity map [%d bytes]\n", bytesSent);
+	uint32_t timeTaken = Timestamp_get32() - start;
 
-		Memory_free(NULL, images.Left, filesize);
-		Memory_free(NULL, images.Right, filesize);
-		Memory_free(NULL, image, filesize);
+	printf("[%f s]\n", (double)timeTaken/freq.lo);
 
+	printf("Sending disparity map..\n");
+	bytesSent = SendImage(s, image, filesize);
+	if(bytesSent > 0)
+		printf("Sent disparity map [%d bytes]\n", bytesSent);
+
+	Memory_free(NULL, images.Left, filesize);
+	Memory_free(NULL, images.Right, filesize);
+	Memory_free(NULL, image, filesize);
 
 	return -1;
 }

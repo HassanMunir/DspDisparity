@@ -12,6 +12,7 @@ extern NccCoreLA(uint8_t* leftImage, uint8_t* rightImage, int iWinStart, int win
 extern float NccCore(StereoImage *stereoImage, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
 
 extern int GetDisparitiesUnique(int* out, int* in);
+extern int GetDisparitiesSortAndUnique(int* restrict out, int* restrict in);
 
 // i, y, v refer to rows
 // j, x, u refer to cols
@@ -76,12 +77,13 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage){
 			disparitiesToSearch[7] = disparitiesToSearch[6] + 1;
 			disparitiesToSearch[8] = disparitiesToSearch[6] + 2;
 
-			int count = GetDisparitiesUnique(disparitiesToSearchUnique, disparitiesToSearch);
+			int count;
+
+			count = GetDisparitiesUnique(disparitiesToSearchUnique, disparitiesToSearch);
+
+			count = GetDisparitiesSortAndUnique(disparitiesToSearchUnique, disparitiesToSearch);
 
 			disparityMap[i* WIDTH + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearchUnique,count);
-
-
-			//			disparityMap[i* WIDTH + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearch,9);
 
 		}
 	}
