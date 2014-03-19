@@ -1,0 +1,34 @@
+omp.zip: Platform.xdc
+Platform.xdc:
+omp.zip: Platform.xs
+Platform.xs:
+omp.zip: config.bld
+config.bld:
+omp.zip: package/.vers_b160
+package/.vers_b160:
+omp.zip: package/.vers_g180
+package/.vers_g180:
+omp.zip: package/.vers_r170
+package/.vers_r170:
+omp.zip: package/.xdc-z52
+package/.xdc-z52:
+omp.zip: package/build.cfg
+package/build.cfg:
+omp.zip: package/omp.ccs
+package/omp.ccs:
+omp.zip: package/omp.class
+package/omp.class:
+omp.zip: package/omp.java
+package/omp.java:
+omp.zip: package/omp.sch
+package/omp.sch:
+omp.zip: package/package.bld.xml
+package/package.bld.xml:
+omp.zip: package/package.defs.h
+package/package.defs.h:
+omp.zip: package/package_omp.c
+package/package_omp.c:
+omp.zip: package.bld
+package.bld:
+omp.zip: package.xdc
+package.xdc:

@@ -60,10 +60,10 @@ extern ImageList *il;
 extern ImageList *lend;
 extern char *completeImage;
 extern UInt ciSize;*/
- //ImageList *il;
- //ImageList *end;
- //char *completeImage;
- //UInt ciSize;
+//ImageList *il;
+//ImageList *end;
+//char *completeImage;
+//UInt ciSize;
 
 
 /* Platform Information - we will read it form the Platform Library */
@@ -163,6 +163,7 @@ void EVM_init() {
 //---------------------------------------------------------------------
 int main() {
 	/* Start the BIOS 6 Scheduler */
+
 	BIOS_start();
 }
 
@@ -170,6 +171,7 @@ int main() {
 // Main Thread
 //
 int StackTest() {
+	printf("Entered StackTest\n");
 	int rc;
 	int i;
 	HANDLE hCfg;
@@ -248,7 +250,7 @@ int StackTest() {
 	platform_write(VerStr);
 
 
-//	 Create and build the system configuration from scratch.
+	//	 Create and build the system configuration from scratch.
 
 
 	// Create a new configuration
@@ -271,13 +273,8 @@ int StackTest() {
 			strlen(HostName), (UINT8 *) HostName, 0);
 
 	// If the IP address is specified, manually configure IP and Gateway
-#if defined(_SCBP6618X_) || defined(_EVMTCI6614_) || defined(DEVICE_K2H) || defined(DEVICE_K2K)
-	/* SCBP6618x, EVMTCI6614, EVMK2H, EVMK2K always uses DHCP */
-	if (0)
-#else
 	if (!platform_get_switch_state(1))
-#endif
-			{
+	{
 		CI_IPNET NA;
 		CI_ROUTE RT;
 		IPN IPTmp;
@@ -339,15 +336,9 @@ int StackTest() {
 	// illustrate how the buffer and limit sizes are configured.)
 	//
 
-		rc = 81920;
-		CfgAddEntry(hCfg, CFGTAG_IP, CFGITEM_IP_SOCKTCPRXLIMIT, CFG_ADDMODE_UNIQUE,
-				sizeof(uint), (UINT8 *) &rc, 0);
-
-//	// UDP Receive limit
-//	rc = 81920;
-//	CfgAddEntry(hCfg, CFGTAG_IP, CFGITEM_IP_SOCKUDPRXLIMIT, CFG_ADDMODE_UNIQUE,
-//			sizeof(uint), (UINT8 *) &rc, 0);
-
+	rc = 8192;
+	CfgAddEntry(hCfg, CFGTAG_IP, CFGITEM_IP_SOCKTCPRXLIMIT, CFG_ADDMODE_UNIQUE,
+			sizeof(uint), (UINT8 *) &rc, 0);
 
 	//
 	// Boot the system using this configuration
@@ -359,11 +350,13 @@ int StackTest() {
 		rc = NC_NetStart(hCfg, NetworkOpen, NetworkClose, NetworkIPAddr);
 	} while (rc > 0);
 
-		// Delete Configuration
+	// Delete Configuration
 	CfgFree(hCfg);
 
 	// Close the OS
-	main_exit: NC_SystemClose();
+	main_exit:
+	NetworkClose();
+	NC_SystemClose();
 	return (0);
 }
 
@@ -378,9 +371,9 @@ static HANDLE hHello = 0;
 // This function is called after the configuration has booted
 //
 static void NetworkOpen() {
-//	 Create our local server
-//	hHello = DaemonNew(SOCK_DGRAM, 0, 7, dtask_udp_hello, OS_TASKPRINORM,
-//			OS_TASKSTKNORM, 0, 1);
+	//	 Create our local server
+	//	hHello = DaemonNew(SOCK_DGRAM, 0, 7, dtask_udp_hello, OS_TASKPRINORM,
+	//			OS_TASKSTKNORM, 0, 1);
 
 	hHello = DaemonNew( SOCK_STREAMNC, 0, 7, dtask_tcp_echo,OS_TASKPRIHIGH, OS_TASKSTKHIGH, 0, 1);
 

@@ -30,7 +30,7 @@
 extern uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg);
 
 
-#define TCP_BUFSIZE 8192
+#define TCP_BUFSIZE 4096
 
 int SendRequestForDimensions(SOCKET s);
 int SendImage(SOCKET s, uint8_t* image, int size);
