@@ -60,7 +60,8 @@ uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg){
 			}
 
 			den = denLeft* denRight;
-			ncc  = (num * num) * (1/den);
+//			ncc  = (num * num) * (1/den);
+			ncc = (num*num) * _rcpsp(den);
 
 
 			if(ncc > prevCorr)
@@ -152,7 +153,9 @@ uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg){
 				}
 
 				den = denLeft* denRight;
-				ncc  = (num * num) * (1/den);
+//				ncc  = (num * num) * (1/den);
+				ncc = (num*num) * _rcpsp(den);
+
 
 
 				if(ncc > prevCorr)
