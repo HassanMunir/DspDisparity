@@ -7,7 +7,7 @@
         <srcFile name="package/cfg/Disparity_pe66.c"/>
     </sources>
     <configscripts>
-        <srcFile name="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace/Disparity/Disparity.cfg"/>
+        <srcFile name="C:/Users/Hassan/workspace_v5_5/Disparity/Disparity.cfg"/>
     </configscripts>
     <makefiles>
         <srcFile name="package.mak" src="package.bld"/>
@@ -44,7 +44,7 @@
         isPartial="false"
         xCfgScript="package/cfg/Disparity_pe66.cfg"
         xCfgPrefix="package/cfg/Disparity_pe66"
-        cfgScript="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace/Disparity/Disparity.cfg"
+        cfgScript="C:/Users/Hassan/workspace_v5_5/Disparity/Disparity.cfg"
         cfgArgs="null"
         />
     </configurations>
@@ -56,7 +56,7 @@
         profile="debug"
         xCfgScript="package/cfg/Disparity_pe66.cfg"
         xCfgPrefix="package/cfg/Disparity_pe66"
-        cfgScript="C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace/Disparity/Disparity.cfg"
+        cfgScript="C:/Users/Hassan/workspace_v5_5/Disparity/Disparity.cfg"
         cfgArgs="null"
         />
     </executables>

@@ -1,0 +1,10 @@
+	.global Reciprocal
+
+Reciprocal:	.cproc	arg
+			.reg	ans
+
+
+	RCPSP		arg, ans
+
+	.return 	ans
+	.endproc

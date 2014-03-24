@@ -11,7 +11,7 @@ var makeAssembly = false;
 var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
-        cfgScript: 'C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace/Disparity/Disparity.cfg',
+        cfgScript: 'C:/Users/Hassan/workspace_v5_5/Disparity/Disparity.cfg',
         profile: 'release',
         cfgHome: 'xconfig_Disparity',
 });
@@ -40,8 +40,8 @@ else {
 }
 
 var thisObj = {
-    cfg:        'C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace/Disparity/Disparity.cfg',
-    outputPath: 'C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace/Disparity/.config/xconfig_Disparity',
+    cfg:        'C:/Users/Hassan/workspace_v5_5/Disparity/Disparity.cfg',
+    outputPath: 'C:/Users/Hassan/workspace_v5_5/Disparity/.config/xconfig_Disparity',
     exeName:    'Disparity' + suffix,
     exeIntName: 'Disparity' + suffix.replace('.', '_'),
     targ:       targ,

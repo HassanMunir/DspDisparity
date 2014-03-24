@@ -5,7 +5,7 @@ package/omp.sch
 package/.vers_g180
 package/.vers_r170
 package/.vers_b160
-package/.xdc-z52
+package/.xdc-z57
 package/omp.java
 package/omp.class
 package/package_omp.c

@@ -16,26 +16,8 @@ metaonly module Platform inherits xdc.platform.IPlatform {
                      {
                         name: "MSMCSRAM",
                         base: 0x0c000000,                    
-                        len: 0x00200000,                    
+                        len: 0x00400000,                    
                         space: "code/data",
-                        access: "RWX",
-                     }
-                ],
-                ["L1DSRAM", 
-                     {
-                        name: "L1DSRAM",
-                        base: 0x00F00000,                    
-                        len: 0x00000000,                    
-                        space: "data",
-                        access: "RW",
-                     }
-                ],
-                ["L1PSRAM", 
-                     {
-                        name: "L1PSRAM",
-                        base: 0x00E00000,                    
-                        len: 0x00000000,                    
-                        space: "code",
                         access: "RWX",
                      }
                 ],
@@ -43,16 +25,7 @@ metaonly module Platform inherits xdc.platform.IPlatform {
                      {
                         name: "L2SRAM",
                         base: 0x00800000,                    
-                        len: 0x00060000,                    
-                        space: "code/data",
-                        access: "RWX",
-                     }
-                ],
-                ["MSMCSRAM_NOCACHE", 
-                     {
-                        name: "MSMCSRAM_NOCACHE",
-                        base: 0xa0200000,                    
-                        len: 0x00200000,                    
+                        len: 0x00100000,                    
                         space: "code/data",
                         access: "RWX",
                      }
@@ -76,7 +49,7 @@ metaonly module Platform inherits xdc.platform.IPlatform {
                      }
                 ],
            ],
-          l2Mode: "128k",
+          l2Mode: "0k",
           l1PMode: "32k",
           l1DMode: "32k",
 
@@ -85,10 +58,10 @@ metaonly module Platform inherits xdc.platform.IPlatform {
 instance :
     
     override config string codeMemory  = "MSMCSRAM";   
-    override config string dataMemory  = "MSMCSRAM_NOCACHE";                                
-    override config string stackMemory = "MSMCSRAM";
+    override config string dataMemory  = "MSMCSRAM";                                
+    override config string stackMemory = "L2SRAM";
 
-    config String l2Mode = "128k";
+    config String l2Mode = "0k";
     config String l1PMode = "32k";
     config String l1DMode = "32k";
 }

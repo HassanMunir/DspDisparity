@@ -2467,7 +2467,7 @@ __FAR__ const xdc_SizeT ti_sysbios_knl_Task_Module_State_terminatedQ__O = offset
  *  Define absolute path prefix for this executable's
  *  configuration generated files.
  */
-xdc__META(__ASM__, "@(#)__ASM__ = C:/Users/Hassan/SkyDrive/Documents/University/Year 4/Individual Project/Workspace/Disparity/CompilerOptimised/configPkg/package/cfg/Disparity_pe66");
+xdc__META(__ASM__, "@(#)__ASM__ = C:/Users/Hassan/workspace_v5_5/Disparity/CompilerOptimised/configPkg/package/cfg/Disparity_pe66");
 
 /*
  *  ======== __ISA__ ========

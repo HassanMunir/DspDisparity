@@ -3,14 +3,14 @@ clean::
 	$(RM) package/.vers_g180
 	$(RM) package/.vers_r170
 	$(RM) package/.vers_b160
-	$(RM) package/.xdc-z52
+	$(RM) package/.xdc-z57
 	$(RM) package/omp.java
 	$(RM) package/omp.class
 	$(RM) package/package_omp.c
 	$(RM) package/package.defs.h
 	$(RM) package/omp.ccs
 
-.interfaces: package/omp.sch package/.vers_g180 package/.vers_r170 package/.vers_b160 package/.xdc-z52 package/omp.java package/package_omp.c package/package.defs.h package/omp.ccs 
+.interfaces: package/omp.sch package/.vers_g180 package/.vers_r170 package/.vers_b160 package/.xdc-z57 package/omp.java package/package_omp.c package/package.defs.h package/omp.ccs 
 package/package.xdc.inc: package/.vers_g180
 package/.vers_g180:
 package/package.xdc.inc: package/.vers_r170
@@ -46,24 +46,24 @@ xdc/platform/IExeContext.xdc:
 vpath xdc/platform/IExeContext.xdc $(XPKGVPATH)
 
 ifneq (clean,$(MAKECMDGOALS))
-C:/ti/xdctools_3_25_03_72/packages/xdc/shelf/java/js.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/shelf/java/js.jar
-C:/ti/xdctools_3_25_03_72/packages/xdc/services/intern/xsr/java/package.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/services/intern/xsr/java/package.jar
-C:/ti/xdctools_3_25_03_72/packages/xdc/services/global/java/package.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/services/global/java/package.jar
-C:/ti/xdctools_3_25_03_72/packages/xdc/shelf/java/antlr.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/shelf/java/antlr.jar
-C:/ti/xdctools_3_25_03_72/packages/xdc/services/intern/gen/java/package.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/services/intern/gen/java/package.jar
-C:/ti/xdctools_3_25_03_72/packages/xdc/shelf/java/ecj.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/shelf/java/ecj.jar
-C:/ti/xdctools_3_25_03_72/packages/xdc/shelf/java/tar.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/shelf/java/tar.jar
-C:/ti/xdctools_3_25_03_72/packages/xdc/services/spec/java/package.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/services/spec/java/package.jar
-C:/ti/xdctools_3_25_03_72/packages/xdc/services/intern/cmd/java/package.jar:
-package/package.xdc.inc: C:/ti/xdctools_3_25_03_72/packages/xdc/services/intern/cmd/java/package.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/services/intern/gen/java/package.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/services/intern/gen/java/package.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/services/spec/java/package.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/services/spec/java/package.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/shelf/java/ecj.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/shelf/java/ecj.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/services/intern/cmd/java/package.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/services/intern/cmd/java/package.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/services/intern/xsr/java/package.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/services/intern/xsr/java/package.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/shelf/java/antlr.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/shelf/java/antlr.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/services/global/java/package.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/services/global/java/package.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/shelf/java/tar.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/shelf/java/tar.jar
+C:/ti/xdctools_3_25_04_88/packages/xdc/shelf/java/js.jar:
+package/package.xdc.inc: C:/ti/xdctools_3_25_04_88/packages/xdc/shelf/java/js.jar
 endif
 # goals for files generated during schema generation but unspecified by schema's pattern rule
 

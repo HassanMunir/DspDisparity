@@ -10,8 +10,8 @@ omp.zip: package/.vers_g180
 package/.vers_g180:
 omp.zip: package/.vers_r170
 package/.vers_r170:
-omp.zip: package/.xdc-z52
-package/.xdc-z52:
+omp.zip: package/.xdc-z57
+package/.xdc-z57:
 omp.zip: package/build.cfg
 package/build.cfg:
 omp.zip: package/omp.ccs

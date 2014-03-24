@@ -171,7 +171,6 @@ int main() {
 // Main Thread
 //
 int StackTest() {
-	printf("Entered StackTest\n");
 	int rc;
 	int i;
 	HANDLE hCfg;

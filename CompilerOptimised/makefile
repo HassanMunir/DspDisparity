@@ -8,6 +8,7 @@ CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/c6000_7.4.7
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
+"./src/reciprocal.obj" \
 "./src/RecieveImage.obj" \
 "./src/NccCoreLA.obj" \
 "./src/NccCore.obj" \
@@ -134,8 +135,8 @@ clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(C6000_EXECUTABLE_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(GEN_OPTS__QUOTED)$(GEN_CMDS__QUOTED) "Disparity.out"
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-$(RM) "Initialise.pp" "platform_osal.pp" "resourcemgr.pp" "src\DisparitiesToSearch.pp" "src\Disparity.pp" "src\DisparityInline.pp" "src\NccCore.pp" "src\RecieveImage.pp" 
-	-$(RM) "Initialise.obj" "platform_osal.obj" "resourcemgr.obj" "src\DisparitiesToSearch.obj" "src\Disparity.obj" "src\DisparityInline.obj" "src\NccCore.obj" "src\NccCoreLA.obj" "src\RecieveImage.obj" 
-	-$(RM) "src\NccCoreLA.pp" 
+	-$(RM) "Initialise.obj" "platform_osal.obj" "resourcemgr.obj" "src\DisparitiesToSearch.obj" "src\Disparity.obj" "src\DisparityInline.obj" "src\NccCore.obj" "src\NccCoreLA.obj" "src\RecieveImage.obj" "src\reciprocal.obj" 
+	-$(RM) "src\NccCoreLA.pp" "src\reciprocal.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

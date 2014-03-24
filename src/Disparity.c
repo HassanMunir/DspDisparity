@@ -7,9 +7,11 @@
 #include <ti/omp/omp.h>
 #include <xdc/runtime/Memory.h>
 
-extern NccCoreLA(uint8_t* leftImage, uint8_t* rightImage, int iWinStart, int winY, int jWinStartTemplate, int jWinStartMatch, int winX, int width);
+extern float NccCoreLA(uint8_t* leftImage, uint8_t* rightImage, int iWinStart, int winY, int jWinStartTemplate, int jWinStartMatch, int winX, int width);
+extern float NccCore(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
+extern float NccCoreUnrolled(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
 
-extern float NccCore(StereoImage *stereoImage, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
+
 
 extern int GetDisparitiesUnique(int* out, int* in);
 extern int GetDisparitiesSortAndUnique(int* restrict out, int* restrict in);
@@ -109,17 +111,20 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 		jWinStartMatch = jWinStart + disparitiesToSearch[k];
 		jWinEndMatch = jWinEnd + disparitiesToSearch[k];
 
-		//			ncc = NccCoreLA(
-		//					stereoImage->Left,
-		//					stereoImage->Right,
-		//					iWinStart, WIN_Y,
-		//					jWinStart,
-		//					jWinStartMatch,
-		//					WIN_X,
-		//					WIDTH);
+		ncc = NccCoreLA(
+				stereoImage->Left,
+				stereoImage->Right,
+				iWinStart, WIN_Y,
+				jWinStart,
+				jWinStartMatch,
+				WIN_X,
+				WIDTH);
+
+//		ncc = NccCoreUnrolled(stereoImage->Left, stereoImage->Right, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
+
+		ncc = NccCore(stereoImage->Left, stereoImage->Right, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
 
 
-		ncc = NccCore(stereoImage, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
 
 		if(ncc > prevCorr)
 		{

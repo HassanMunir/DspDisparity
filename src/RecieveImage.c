@@ -30,7 +30,7 @@
 extern uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg);
 
 
-#define TCP_BUFSIZE 4096
+#define TCP_BUFSIZE 1024
 
 int SendRequestForDimensions(SOCKET s);
 int SendImage(SOCKET s, uint8_t* image, int size);
@@ -89,9 +89,9 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	Timestamp_getFreq(&freq);
 
 	uint32_t start = Timestamp_get32();
-//	uint8_t* image = GetDisparityMap(&images);
+	uint8_t* image = GetDisparityMap(&images);
 
-	uint8_t* image = GetDisparityMapInline(images.Left, images.Right);
+//	uint8_t* image = GetDisparityMapInline(images.Left, images.Right);
 
 	uint32_t timeTaken = Timestamp_get32() - start;
 
