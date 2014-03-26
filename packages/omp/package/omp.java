@@ -197,7 +197,7 @@ public class omp
         po.init("omp.Platform.Instance", om.findStrict("xdc.platform.IPlatform.Instance", "omp"));
                 po.addFld("$hostonly", $$T_Num, 1, "r");
         po.addFld("codeMemory", $$T_Str, "MSMCSRAM", "wh");
-        po.addFld("dataMemory", $$T_Str, "MSMCSRAM", "wh");
+        po.addFld("dataMemory", $$T_Str, "MSMCSRAM_NOCACHE", "wh");
         po.addFld("stackMemory", $$T_Str, "L2SRAM", "wh");
         po.addFld("l2Mode", $$T_Str, "0k", "wh");
         po.addFld("l1PMode", $$T_Str, "32k", "wh");
@@ -216,7 +216,7 @@ public class omp
         po.init("omp.Platform.Params", om.findStrict("xdc.platform.IPlatform$$Params", "omp"));
                 po.addFld("$hostonly", $$T_Num, 1, "r");
         po.addFld("codeMemory", $$T_Str, "MSMCSRAM", "wh");
-        po.addFld("dataMemory", $$T_Str, "MSMCSRAM", "wh");
+        po.addFld("dataMemory", $$T_Str, "MSMCSRAM_NOCACHE", "wh");
         po.addFld("stackMemory", $$T_Str, "L2SRAM", "wh");
         po.addFld("l2Mode", $$T_Str, "0k", "wh");
         po.addFld("l1PMode", $$T_Str, "32k", "wh");
@@ -326,7 +326,7 @@ public class omp
         }//isCFG
         Global.callFxn("module$meta$init", (Scriptable)om.findStrict("omp.Platform", "omp"));
         vo = (Value.Obj)om.findStrict("omp.Platform", "omp");
-        Global.put(vo, "CPU", Global.callFxn("create", (Scriptable)om.find("ti.platforms.generic.Platform"), "CPU", Global.newObject("clockRate", 1000L, "catalogName", "ti.catalog.c6000", "deviceName", "TMS320C6678", "customMemoryMap", Global.newArray(new Object[]{Global.newArray(new Object[]{"MSMCSRAM", Global.newObject("name", "MSMCSRAM", "base", 0x0c000000L, "len", 0x00400000L, "space", "code/data", "access", "RWX")}), Global.newArray(new Object[]{"L2SRAM", Global.newObject("name", "L2SRAM", "base", 0x00800000L, "len", 0x00100000L, "space", "code/data", "access", "RWX")}), Global.newArray(new Object[]{"DDR3", Global.newObject("name", "DDR3", "base", 0x80000000L, "len", 0x10000000L, "space", "code/data", "access", "RWX")}), Global.newArray(new Object[]{"DDR_NOCACHE", Global.newObject("name", "DDR_NOCACHE", "base", 0x90000000L, "len", 0x10000000L, "space", "code/data", "access", "RWX")})}), "l2Mode", "0k", "l1PMode", "32k", "l1DMode", "32k")));
+        Global.put(vo, "CPU", Global.callFxn("create", (Scriptable)om.find("ti.platforms.generic.Platform"), "CPU", Global.newObject("clockRate", 1000L, "catalogName", "ti.catalog.c6000", "deviceName", "TMS320C6678", "customMemoryMap", Global.newArray(new Object[]{Global.newArray(new Object[]{"MSMCSRAM", Global.newObject("name", "MSMCSRAM", "base", 0x0c000000L, "len", 0x00400000L, "space", "code/data", "access", "RWX")}), Global.newArray(new Object[]{"L2SRAM", Global.newObject("name", "L2SRAM", "base", 0x00800000L, "len", 0x00100000L, "space", "code/data", "access", "RWX")}), Global.newArray(new Object[]{"DDR3", Global.newObject("name", "DDR3", "base", 0x80000000L, "len", 0x10000000L, "space", "code/data", "access", "RWX")}), Global.newArray(new Object[]{"DDR3_NOCACHE", Global.newObject("name", "DDR3_NOCACHE", "base", 0x90000000L, "len", 0x10000000L, "space", "code/data", "access", "RWX")}), Global.newArray(new Object[]{"MSMCSRAM_NOCACHE", Global.newObject("name", "MSMCSRAM_NOCACHE", "base", 0xa0200000L, "len", 0x00200000L, "space", "code/data", "access", "RWX")})}), "l2Mode", "0k", "l1PMode", "32k", "l1DMode", "32k")));
         Global.callFxn("init", pkgV);
         ((Value.Obj)om.getv("omp.Platform")).bless();
         ((Value.Arr)om.findStrict("$packages", "omp")).add(pkgV);

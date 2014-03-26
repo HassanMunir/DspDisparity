@@ -39,11 +39,20 @@ metaonly module Platform inherits xdc.platform.IPlatform {
                         access: "RWX",
                      }
                 ],
-                ["DDR_NOCACHE", 
+                ["DDR3_NOCACHE", 
                      {
-                        name: "DDR_NOCACHE",
+                        name: "DDR3_NOCACHE",
                         base: 0x90000000,                    
                         len: 0x10000000,                    
+                        space: "code/data",
+                        access: "RWX",
+                     }
+                ],
+                ["MSMCSRAM_NOCACHE", 
+                     {
+                        name: "MSMCSRAM_NOCACHE",
+                        base: 0xa0200000,                    
+                        len: 0x00200000,                    
                         space: "code/data",
                         access: "RWX",
                      }
@@ -58,7 +67,7 @@ metaonly module Platform inherits xdc.platform.IPlatform {
 instance :
     
     override config string codeMemory  = "MSMCSRAM";   
-    override config string dataMemory  = "MSMCSRAM";                                
+    override config string dataMemory  = "MSMCSRAM_NOCACHE";                                
     override config string stackMemory = "L2SRAM";
 
     config String l2Mode = "0k";
