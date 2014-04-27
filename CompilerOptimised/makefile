@@ -8,6 +8,7 @@ CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/c6000_7.4.7
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
+"./src/ncc/ncc_intrinsics.obj" \
 "./src/reciprocal.obj" \
 "./src/RecieveImage.obj" \
 "./src/NccCoreLA.obj" \
@@ -18,8 +19,8 @@ $(GEN_CMDS__FLAG) \
 "./resourcemgr.obj" \
 "./platform_osal.obj" \
 "./Initialise.obj" \
--l"libc.a" \
 -l"C:/ti/mathlib_c66x_3_0_1_1/lib/mathlib.ae66" \
+-l"libc.a" \
 
 -include ../makefile.init
 
@@ -30,8 +31,10 @@ RMDIR := RMDIR /S/Q
 -include sources.mk
 -include subdir_vars.mk
 -include src/subdir_vars.mk
+-include src/ncc/subdir_vars.mk
 -include subdir_rules.mk
 -include src/subdir_rules.mk
+-include src/ncc/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -134,8 +137,8 @@ Disparity.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(C6000_EXECUTABLE_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(GEN_OPTS__QUOTED)$(GEN_CMDS__QUOTED) "Disparity.out"
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
-	-$(RM) "Initialise.pp" "platform_osal.pp" "resourcemgr.pp" "src\DisparitiesToSearch.pp" "src\Disparity.pp" "src\DisparityInline.pp" "src\NccCore.pp" "src\RecieveImage.pp" 
-	-$(RM) "Initialise.obj" "platform_osal.obj" "resourcemgr.obj" "src\DisparitiesToSearch.obj" "src\Disparity.obj" "src\DisparityInline.obj" "src\NccCore.obj" "src\NccCoreLA.obj" "src\RecieveImage.obj" "src\reciprocal.obj" 
+	-$(RM) "Initialise.pp" "platform_osal.pp" "resourcemgr.pp" "src\DisparitiesToSearch.pp" "src\Disparity.pp" "src\DisparityInline.pp" "src\NccCore.pp" "src\RecieveImage.pp" "src\ncc\ncc_intrinsics.pp" 
+	-$(RM) "Initialise.obj" "platform_osal.obj" "resourcemgr.obj" "src\DisparitiesToSearch.obj" "src\Disparity.obj" "src\DisparityInline.obj" "src\NccCore.obj" "src\NccCoreLA.obj" "src\RecieveImage.obj" "src\reciprocal.obj" "src\ncc\ncc_intrinsics.obj" 
 	-$(RM) "src\NccCoreLA.pp" "src\reciprocal.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '

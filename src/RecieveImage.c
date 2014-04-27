@@ -68,13 +68,14 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	setsockopt(s, SOL_SOCKET, SO_SNDTIMEO, &to, sizeof(to));
 	setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &to, sizeof(to));
 
-
 	//		if(g_transmissionError == 1)
 	//			break;
 
 
 	filesize = WIDTH * HEIGHT;
 
+	while(1)
+	{
 	StereoImage images = RecieveStereoImage(s, filesize);
 
 	//		if(g_transmissionError == 1)
@@ -89,6 +90,8 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	Timestamp_getFreq(&freq);
 
 	uint32_t start = Timestamp_get32();
+
+
 	uint8_t* image = GetDisparityMap(&images);
 
 //	uint8_t* image = GetDisparityMapInline(images.Left, images.Right);
@@ -106,6 +109,7 @@ int dtask_tcp_echo(SOCKET s, UINT32 unused) {
 	Memory_free(NULL, images.Right, filesize);
 	Memory_free(NULL, image, filesize);
 
+	}
 	return -1;
 }
 
@@ -128,7 +132,7 @@ uint8_t* RecieveImage(SOCKET s, int filesize)
 	uint8_t* image;
 	uint8_t buffer[TCP_BUFSIZE];
 
-	image = Memory_alloc(NULL, filesize, 8, NULL);
+	image = Memory_alloc(NULL, filesize, 4, NULL);
 
 	while(bytesReceived < filesize)
 	{

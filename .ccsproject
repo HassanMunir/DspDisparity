@@ -8,4 +8,5 @@
 	<rts value="libc.a"/>
 	<deviceFamily value="C6000"/>
 	<isTargetManual value="false"/>
+	<connection value="common/targetdb/connections/BH-XDS560v2-USB_Mezzanine.xml"/>
 </projectOptions>

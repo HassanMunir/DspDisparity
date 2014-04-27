@@ -1,20 +1,23 @@
 #include "../header/Disparity.h"
 #include "../header/Config.h"
+#include "../header/ncc.h"
 #include "stdint.h"
 #include "stdio.h"
 
 #include <mathlib.h>
-#include <ti/omp/omp.h>
 #include <xdc/runtime/Memory.h>
 
-extern float NccCoreLA(uint8_t* leftImage, uint8_t* rightImage, int iWinStart, int winY, int jWinStartTemplate, int jWinStartMatch, int winX, int width);
+#include <xdc/runtime/Types.h>
+#include <xdc/runtime/Timestamp.h>
+
+extern double NccCoreLA(uint8_t* leftImage, uint8_t* rightImage, int iWinStart, int winY, int jWinStartTemplate, int jWinStartMatch, int winX, int width);
 extern float NccCore(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
 extern float NccCoreUnrolled(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
 
-
-
 extern int GetDisparitiesUnique(int* out, int* in);
 extern int GetDisparitiesSortAndUnique(int* restrict out, int* restrict in);
+
+long long counter1 = 0, counter2 = 0, counter3 = 0;
 
 // i, y, v refer to rows
 // j, x, u refer to cols
@@ -89,8 +92,10 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage){
 
 		}
 	}
+	printf("Counter1: %d\t Counter2: %d\n", counter1/counter3, counter2/counter3);
 	return disparityMap;
 }
+
 
 static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
 {
@@ -101,6 +106,9 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 	//assuming win_x * win_y = 11 * 5 = 55, max possible value can be 3576375
 	//which can fit in an int -- but it doesn't work... ?
 	float prevCorr = 0.0;
+
+	//	float ncc = 0.0;
+
 	float ncc = 0.0;
 
 	int jWinStartMatch, jWinEndMatch;
@@ -108,23 +116,43 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 	for(k = 0; k < disparitiesToSearchLength; k++)
 	{
 
+		Types_FreqHz freq;
+
+			Timestamp_getFreq(&freq);
+
+
+
 		jWinStartMatch = jWinStart + disparitiesToSearch[k];
 		jWinEndMatch = jWinEnd + disparitiesToSearch[k];
 
-		ncc = NccCoreLA(
-				stereoImage->Left,
-				stereoImage->Right,
-				iWinStart, WIN_Y,
-				jWinStart,
-				jWinStartMatch,
-				WIN_X,
-				WIDTH);
-
 //		ncc = NccCoreUnrolled(stereoImage->Left, stereoImage->Right, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
 
-		ncc = NccCore(stereoImage->Left, stereoImage->Right, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
+
+		uint32_t start = Timestamp_get32();
+
+		ncc = NccIntrinsics4(
+				stereoImage->Left,
+				stereoImage->Right,
+				iWinStart,
+				iWinEnd,
+				jWinStart,
+				jWinStartMatch,
+				jWinEndMatch);
+
+//
+//		ncc = NccCore(
+//						stereoImage->Left,
+//						stereoImage->Right,
+//						iWinStart,
+//						iWinEnd,
+//						jWinStart,
+//						jWinStartMatch,
+//						jWinEndMatch);
+//
 
 
+		counter1 += Timestamp_get32() - start;
+		counter3++;
 
 		if(ncc > prevCorr)
 		{
@@ -135,4 +163,5 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 	}
 	return bestMatchSoFar;
 }
+
 

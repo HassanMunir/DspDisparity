@@ -44,7 +44,7 @@ int GetDisparitiesSortAndUnique(int* restrict out, int* restrict in)
 	{
 		for(y = 0; y < 8 - x; y++)
 		{
-			if(in[y] == in[y+1])
+			if(in[y] => in[y+1])
 			{
 				temp = in[y+1];
 				in[y+1] = in[y];
@@ -53,8 +53,8 @@ int GetDisparitiesSortAndUnique(int* restrict out, int* restrict in)
 		}
 	}
 
-#pragma MUST_ITERATE(9,9)
-	for(x = 0; x < 9; x++)
+#pragma MUST_ITERATE(8,8)
+	for(x = 0; x < 8; x++)
 	{
 		if(in[x] < MAX_DISP && in[x] > MIN_DISP && in[x] != in[x+1] )
 		{

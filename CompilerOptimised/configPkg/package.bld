@@ -12,7 +12,7 @@ var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
         cfgScript: 'C:/Users/Hassan/workspace_v5_5/Disparity/Disparity.cfg',
-        profile: 'debug',
+        profile: 'release',
         cfgHome: 'configPkg',
 });
 

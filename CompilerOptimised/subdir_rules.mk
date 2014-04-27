@@ -6,7 +6,7 @@
 configPkg/linker.cmd: ../Disparity.cfg
 	@echo 'Building file: $<'
 	@echo 'Invoking: XDCtools'
-	"C:/ti/xdctools_3_25_04_88/xs" --xdcpath="C:/ti/pdk_C6678_1_1_2_6/packages;C:/ti/ndk_2_23_00_00/packages;C:/ti/bios_6_35_04_50/packages;C:/ti/mcsdk_2_01_02_06/demos;C:/ti/ccsv5/ccs_base;C:/ti/uia_1_03_01_08/packages;C:/ti/ipc_1_24_03_32/packages;C:/ti/mathlib_c66x_3_0_1_1/packages;C:/ti/omp_1_01_03_02/packages;C:/Users/Hassan/workspace_v5_5/Disparity/packages;" xdc.tools.configuro -o configPkg -t ti.targets.elf.C66 -p ti.platforms.evm6678 -r debug -c "C:/ti/ccsv5/tools/compiler/c6000_7.4.7" "$<"
+	"C:/ti/xdctools_3_25_04_88/xs" --xdcpath="C:/ti/pdk_C6678_1_1_2_6/packages;C:/ti/ndk_2_23_00_00/packages;C:/ti/bios_6_35_04_50/packages;C:/ti/mcsdk_2_01_02_06/demos;C:/ti/ccsv5/ccs_base;C:/ti/uia_1_03_01_08/packages;C:/ti/ipc_1_24_03_32/packages;C:/ti/mathlib_c66x_3_0_1_1/packages;C:/ti/omp_1_01_03_02/packages;C:/Users/Hassan/workspace_v5_5/Disparity/packages;" xdc.tools.configuro -o configPkg -t ti.targets.elf.C66 -p ti.platforms.evm6678 -r release -c "C:/ti/ccsv5/tools/compiler/c6000_7.4.7" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

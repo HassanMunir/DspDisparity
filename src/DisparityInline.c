@@ -7,6 +7,7 @@
 #include "../header/Config.h"
 #include <stdint.h>
 #include <xdc/runtime/Memory.h>
+#include <mathlib.h>
 
 static inline float NccCore(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
 
@@ -45,24 +46,25 @@ uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg){
 			for(y = iWinStart; y <= iWinEnd; y++)
 			{
 				v = jWinStart;
+				int baseAddr = y * WIDTH;
 
-#pragma MUST_ITERATE(WIN_X, WIN_X)
-				for(x = jWinStartMatch; x <= jWinEndMatch; x++)
+#pragma MUST_ITERATE(3, 3)
+				for(x = jWinStartMatch; x <= jWinEndMatch; x+=4, v+=4)
 				{
-					uint8_t templatePixel = rightImg[y * WIDTH + v];
-					uint8_t matchPixel = leftImg[y * WIDTH + x];
-					num += (templatePixel * matchPixel);
-					denLeft += (matchPixel * matchPixel);
-					denRight += (templatePixel * templatePixel);
-					v++;
+					uint64_t templatePixels = _mem4(&rightImg[baseAddr + v]);
+					uint64_t matchPixels = _mem4(&leftImg[baseAddr + x]);
+
+					num += _dotpu4(templatePixels, matchPixels);
+					denLeft += _dotpu4(matchPixels, matchPixels);
+					denRight += _dotpu4(templatePixels, templatePixels);
 				}
 			}
 
 			den = denLeft* denRight;
-//			ncc  = (num * num) * (1/den);
-			ncc = (num*num) * _rcpsp(den);
+//			ncc = num * 1/(sqrtsp(den));
+			ncc  = (num * num) * (1/den);
+//			ncc = (num*num) * _rcpsp(den);
 
-//			ncc = NccCore(leftImg, rightImg, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
 			if(ncc > prevCorr)
 			{
 				prevCorr = ncc;
@@ -138,25 +140,27 @@ uint8_t* GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg){
 				for(y = iWinStart; y <= iWinEnd; y++)
 				{
 					v = jWinStart;
+					int baseAddr = y * WIDTH;
 
-#pragma MUST_ITERATE(WIN_X, WIN_X)
-					for(x = jWinStartMatch; x <= jWinEndMatch; x++)
+#pragma MUST_ITERATE(3, 3)
+					for(x = jWinStartMatch; x <= jWinEndMatch; x+=4, v+=4)
 					{
-						uint8_t templatePixel = rightImg[y * WIDTH + v];
-						uint8_t matchPixel = leftImg[y * WIDTH + x];
-						num += (templatePixel * matchPixel);
-						denLeft += (matchPixel * matchPixel);
-						denRight += (templatePixel * templatePixel);
-						v++;
+						uint64_t templatePixels = _mem4(&rightImg[baseAddr + v]);
+						uint64_t matchPixels = _mem4(&leftImg[baseAddr + x]);
+
+						num += _dotpu4(templatePixels, matchPixels);
+						denLeft += _dotpu4(matchPixels, matchPixels);
+						denRight += _dotpu4(templatePixels, templatePixels);
 					}
+
 				}
 
 				den = denLeft* denRight;
-//				ncc  = (num * num) * (1/den);
+				//				ncc  = (num * num) * (1/den);
 				ncc = (num*num) * _rcpsp(den);
 
 
-//				ncc = NccCore(leftImg, rightImg, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
+				//				ncc = NccCore(leftImg, rightImg, iWinStart, iWinEnd, jWinStart, jWinStartMatch, jWinEndMatch);
 
 				if(ncc > prevCorr)
 				{

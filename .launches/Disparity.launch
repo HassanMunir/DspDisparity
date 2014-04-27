@@ -39,16 +39,16 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_7" value="Disparity"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="C:\Users\Hassan\workspace_v5_5\Disparity\TMS320C6678.ccxml"/>
 <booleanAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_USE_DEFAULT_TARGET_CONFIG" value="false"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_0" value="C:/Users\Hassan\workspace_v5_5\Disparity\Debug\Disparity.out"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_1" value="C:/Users\Hassan\workspace_v5_5\Disparity\Debug\Disparity.out"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_2" value="C:/Users\Hassan\workspace_v5_5\Disparity\Debug\Disparity.out"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_3" value="C:/Users\Hassan\workspace_v5_5\Disparity\Debug\Disparity.out"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_4" value="C:/Users\Hassan\workspace_v5_5\Disparity\Debug\Disparity.out"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_5" value="C:/Users\Hassan\workspace_v5_5\Disparity\Debug\Disparity.out"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_6" value="C:/Users\Hassan\workspace_v5_5\Disparity\Debug\Disparity.out"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_7" value="C:/Users\Hassan\workspace_v5_5\Disparity\Debug\Disparity.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_0" value="C:/Users\Hassan\workspace_v5_5\Disparity\CompilerOptimised\Disparity.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_1" value="C:/Users\Hassan\workspace_v5_5\Disparity\CompilerOptimised\Disparity.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_2" value="C:/Users\Hassan\workspace_v5_5\Disparity\CompilerOptimised\Disparity.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_3" value="C:/Users\Hassan\workspace_v5_5\Disparity\CompilerOptimised\Disparity.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_4" value="C:/Users\Hassan\workspace_v5_5\Disparity\CompilerOptimised\Disparity.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_5" value="C:/Users\Hassan\workspace_v5_5\Disparity\CompilerOptimised\Disparity.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_6" value="C:/Users\Hassan\workspace_v5_5\Disparity\CompilerOptimised\Disparity.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_7" value="C:/Users\Hassan\workspace_v5_5\Disparity\CompilerOptimised\Disparity.out"/>
 <mapAttribute key="com.ti.ccstudio.debug.ui.displayFormats">
-<mapEntry key="Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_0@##separator##@0" value="8-Bit UnSigned Int"/>
+<mapEntry key="Blackhawk XDS560v2-USB Mezzanine Emulator/C66xx_0@##separator##@0" value="32-Bit Hex - TI Style"/>
 </mapAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/Disparity"/>

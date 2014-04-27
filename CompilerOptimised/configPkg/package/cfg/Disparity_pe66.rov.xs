@@ -19042,7 +19042,7 @@ __o = __obj[1261]
     __o['cfgHome'] = String(java.net.URLDecoder.decode('configPkg', 'UTF-8'))
     __o['cfgScript'] = String(java.net.URLDecoder.decode('C%3A%2FUsers%2FHassan%2Fworkspace_v5_5%2FDisparity%2FDisparity.cfg', 'UTF-8'))
     __o['prelink'] = false
-    __o['profile'] = String(java.net.URLDecoder.decode('debug', 'UTF-8'))
+    __o['profile'] = String(java.net.URLDecoder.decode('release', 'UTF-8'))
     __o['releases'] = __obj[1262.0]
     __o['target'] = __obj[1267.0]
 

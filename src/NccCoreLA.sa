@@ -1,60 +1,95 @@
 	.global NccCoreLA
 
 NccCoreLA:	.cproc	left, right, iWinStart, winY, jStartTemp, jStartMatch, winX, width
-			.reg	v, u, x, y,  ncc, num, numProd, den, recip, denL, denLprod, denR, denRprod, tPixel, mPixel, baseAddr, tAddr, mAddr
+			.reg	tPixel, mPixel
+			.reg	baseAddr, tAddr, mAddr
+			.reg	v, u, x, y, winXCnt
+			.reg 	numProd, denLprod,denRprod
+			.reg	ncc, num, den, denL, denR, recip, numP, denh:denl
+			.reg	numh: numl, denLh:denLl, denRh:denRl
 
-			zero	ncc
 			zero	num
 			zero	denL
 			zero	denR
 
+			zero	numh
+			zero	numl
 
-iLoop:
+			zero	denRh
+			zero	denRl
+
+			zero 	denLh
+			zero	denLl
+
+
+iLoop:		.trip	5
 			ADD		iWinStart, winY, y
 			MPY		width, y, baseAddr
-			MV		jStartTemp, v
 
-jLoop:		.trip	11
-			ADD		jStartMatch, winX, x
+			MV		jStartTemp, v
+			MV		winX, winXCnt
+			ADD		1, winXCnt, winXCnt		;temp
+
+jLoop:
+			ADD		jStartMatch, winXCnt, x
+			ADD		jStartTemp, winXCnt, v
 
 			ADD		baseAddr, v, tAddr
 			ADD		baseAddr, x, mAddr
 
-			LDBU	*right[tAddr], tPixel
-			LDBU	*left[mAddr], mPixel
-			MPYU	tPixel, mPixel, numProd
-			ADD		numProd, num, num
+			SHR		tAddr, 2, tAddr
+			SHR		mAddr, 2, mAddr
 
-			MPYU	mPixel, mPixel, denLprod
-			ADD		denLprod, denL, denL
+			LDNW		*+right[tAddr], tPixel
+			LDNW		*+left[mAddr], mPixel
 
-			MPYU	tPixel, tPixel, denRprod
-			ADD		denRprod, denR, denR
+			DOTPU4	tPixel, mPixel, num
+			DOTPU4	mPixel, mPixel, denL
+			DOTPU4	tPixel, tPixel, denR
 
-			ADD		v, 1, v
+			FADDSP	num, numh, numh
+			FADDSP	denL, denLh, denLh
+			FADDSP	denR, denRh, denRh
 
-[winX]	SUB		winX, 1, winX
-[winX]	B		jLoop
-
-
-[winY]	SUB		winY, 1, winY
-[winY]	B		iLoop
-
-	MPYU		denL, denR, den
-;	INTSPU		den, den
-
-	MVK			4, den
-
-	RCPSP 	 	den, recip
-	MPYU		num, num, num
-;	INTSPU		num, num
+[winXCnt]	SUB		winXCnt, 4, winXCnt
+[winXCnt]	B		jLoop
 
 
-	MPYSP		num, recip, ncc
+[winY]		SUB		winY, 1, winY
+[winY]		B		iLoop
+
+			MPYSP	denLh, denRh, den
+			MPYSP	numh, numh, numProd
+			RCPSP	den, recip
+
+			MPYSP	numProd, recip, ncc
 
 	.return 	ncc
 	.endproc
 
+
+
+;			LDBU	*+right[tAddr], tPixel
+;			LDBU	*+left[mAddr], mPixel
+;			MPYUS	tPixel, mPixel, numProd
+
+;			INTSP	numProd, numProd
+;
+;			FADDSP	numProd, num, num
+;
+;			MPYUS	mPixel, mPixel, denLprod
+;
+;			INTSP	denLprod, denLprod
+;
+;			FADDSP	denLprod, denL, denL
+;
+;			MPYUS	tPixel, tPixel, denRprod
+;
+;			INTSP	denRprod, denRprod
+;
+;			FADDSP	denRprod, denR, denR
+;
+;;;;;;;;;;;;;;;;;
 
 ;	 		ADD		iWinStart, winY, y
 ;			MPY		width, y, baseAddr

@@ -43,16 +43,14 @@ float NccCore(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int iWinSta
 
 	denominator = denominatorLeft * denominatorRight;
 
-
-	//	ncc = numerator * 1/(sqrtsp(denominator));
-	//	ncc = numerator * rsqrtsp(denominator);
+//	numerator = numerator * numerator;
+//		ncc = (numerator) * 1/(sqrtsp(denominator));
+//		ncc = numerator * rsqrtsp(denominator);
 
 	ncc  = (numerator * numerator) * _rcpsp(denominator);
-	//	ncc  = (numerator * numerator) * (1/denominator);
+//	ncc  = (numerator * numerator) * (1/denominator);
 
 	return ncc;
-	//	return _rcpsp(denominator);
-	//	return denominator;
 }
 
 
@@ -146,7 +144,7 @@ float NccCoreUnrolled(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int
 	denominator = denominatorLeft * denominatorRight;
 //	numerator = numerator * numerator;
 
-//	ncc  = numerator * (1/denominator);
+//	ncc  = numerator numerator * (1/denominator);
 	ncc  = (numerator * numerator) * _rcpsp(denominator);
 
 

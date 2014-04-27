@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -l"libc.a" -l"C:/ti/mathlib_c66x_3_0_1_1/lib/mathlib.ae66"
+LIBS := -l"C:/ti/mathlib_c66x_3_0_1_1/lib/mathlib.ae66" -l"libc.a"
 
