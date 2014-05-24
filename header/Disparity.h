@@ -15,7 +15,7 @@ typedef struct stereo {
 	uint8_t* Right;
 } StereoImage;
 
-uint8_t* GetDisparityMap(StereoImage* stereoImage);
-static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength);
+void GetDisparityMap(uint8_t* leftImg, uint8_t* rightImg, uint8_t* disparityMap);
+void GetDisparityMapInline(uint8_t* leftImg, uint8_t* rightImg, uint8_t* outImg);
 
 #endif /* DISPARITY_H_ */

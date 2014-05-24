@@ -1,0 +1,146 @@
+	.global NccCoreLA
+
+NccCoreLA:	.cproc	left, right, iWinStart, winY, jStartTemp, jStartMatch, winX, width
+			.reg	tPixel, mPixel
+			.reg	baseAddr, tAddr, mAddr
+			.reg	v, u, x, y, winXCnt
+			.reg 	numProd, denLprod,denRprod
+			.reg	ncc, num, den, denL, denR, recip, numP, denh:denl
+			.reg	numh: numl, denLh:denLl, denRh:denRl
+
+			zero	num
+			zero	denL
+			zero	denR
+
+			zero	numh
+			zero	numl
+
+			zero	denRh
+			zero	denRl
+
+			zero 	denLh
+			zero	denLl
+
+
+iLoop:		.trip	5
+			ADD		iWinStart, winY, y
+			MPY		width, y, baseAddr
+
+			MV		jStartTemp, v
+			MV		winX, winXCnt
+			ADD		1, winXCnt, winXCnt		;temp
+
+jLoop:
+			ADD		jStartMatch, winXCnt, x
+			ADD		jStartTemp, winXCnt, v
+
+			ADD		baseAddr, v, tAddr
+			ADD		baseAddr, x, mAddr
+
+			SHR		tAddr, 2, tAddr
+			SHR		mAddr, 2, mAddr
+
+			LDNW		*+right[tAddr], tPixel
+			LDNW		*+left[mAddr], mPixel
+
+			DOTPU4	tPixel, mPixel, num
+			DOTPU4	mPixel, mPixel, denL
+			DOTPU4	tPixel, tPixel, denR
+
+			FADDSP	num, numh, numh
+			FADDSP	denL, denLh, denLh
+			FADDSP	denR, denRh, denRh
+
+[winXCnt]	SUB		winXCnt, 4, winXCnt
+[winXCnt]	B		jLoop
+
+
+[winY]		SUB		winY, 1, winY
+[winY]		B		iLoop
+
+			MPYSP	denLh, denRh, den
+			MPYSP	numh, numh, numProd
+			RCPSP	den, recip
+
+			MPYSP	numProd, recip, ncc
+
+	.return 	ncc
+	.endproc
+
+
+
+;			LDBU	*+right[tAddr], tPixel
+;			LDBU	*+left[mAddr], mPixel
+;			MPYUS	tPixel, mPixel, numProd
+
+;			INTSP	numProd, numProd
+;
+;			FADDSP	numProd, num, num
+;
+;			MPYUS	mPixel, mPixel, denLprod
+;
+;			INTSP	denLprod, denLprod
+;
+;			FADDSP	denLprod, denL, denL
+;
+;			MPYUS	tPixel, tPixel, denRprod
+;
+;			INTSP	denRprod, denRprod
+;
+;			FADDSP	denRprod, denR, denR
+;
+;;;;;;;;;;;;;;;;;
+
+;	 		ADD		iWinStart, winY, y
+;			MPY		width, y, baseAddr
+;			ADD		baseAddr, jStartTemp, tAddr
+;			ADD		baseAddr, jStartMatch, mAddr
+
+
+;;;;jLoop	- iterates 11 times (actually iterating 4 x 3 times atm)
+
+;			LDW		*right[tAddr], tPixel
+;			LDW		*left[mAddr], mPixel
+;
+;			DOTPU4	tPixel, mPixel, numProd
+;			ADD		numProd, num, num
+;
+;			DOTPU4	mPixel, mPixel, denLprod
+;			ADD		denLprod, denL, denL
+;
+;			DOTPU4	tPixel, tPixel, denRprod
+;			ADD		denRprod, denR, denR
+;
+;			ADD		tAddr, 4, tAddr
+;			ADD		mAddr, 4, mAddr
+
+;second iteration
+;			LDW		*right[tAddr], tPixel
+;			LDW		*left[mAddr], mPixel
+;
+;			DOTPU4	tPixel, mPixel, numProd
+;			ADD		numProd, num, num
+;
+;			DOTPU4	mPixel, mPixel, denLprod
+;			ADD		denLprod, denL, denL
+;
+;			DOTPU4	tPixel, tPixel, denRprod
+;			ADD		denRprod, denR, denR
+;
+;			ADD		tAddr, 4, tAddr
+;			ADD		mAddr, 4, mAddr
+
+
+;third iteration
+;			LDW		*right[tAddr], tPixel
+;			LDW		*left[mAddr], mPixel
+;
+;			DOTPU4	tPixel, mPixel, numProd
+;			ADD		numProd, num, num
+;
+;			DOTPU4	mPixel, mPixel, denLprod
+;			ADD		denLprod, denL, denL
+;
+	;		DOTPU4	tPixel, tPixel, denRprod
+	;		ADD		denRprod, denR, denR
+

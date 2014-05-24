@@ -8,14 +8,15 @@ CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/c6000_7.4.7
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./src/ncc/ncc_intrinsics.obj" \
+"./src/ncc/NccIntrinsics.obj" \
+"./src/ncc/NccCoreLA.obj" \
+"./src/ncc/NccCore.obj" \
 "./src/reciprocal.obj" \
-"./src/RecieveImage.obj" \
-"./src/NccCoreLA.obj" \
-"./src/NccCore.obj" \
 "./src/DisparityInline.obj" \
 "./src/Disparity.obj" \
 "./src/DisparitiesToSearch.obj" \
+"./src/DataTransfer.obj" \
+"./src/Controller.obj" \
 "./resourcemgr.obj" \
 "./platform_osal.obj" \
 "./Initialise.obj" \
@@ -137,9 +138,9 @@ Disparity.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(C6000_EXECUTABLE_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(GEN_OPTS__QUOTED)$(GEN_CMDS__QUOTED) "Disparity.out"
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
-	-$(RM) "Initialise.pp" "platform_osal.pp" "resourcemgr.pp" "src\DisparitiesToSearch.pp" "src\Disparity.pp" "src\DisparityInline.pp" "src\NccCore.pp" "src\RecieveImage.pp" "src\ncc\ncc_intrinsics.pp" 
-	-$(RM) "Initialise.obj" "platform_osal.obj" "resourcemgr.obj" "src\DisparitiesToSearch.obj" "src\Disparity.obj" "src\DisparityInline.obj" "src\NccCore.obj" "src\NccCoreLA.obj" "src\RecieveImage.obj" "src\reciprocal.obj" "src\ncc\ncc_intrinsics.obj" 
-	-$(RM) "src\NccCoreLA.pp" "src\reciprocal.pp" 
+	-$(RM) "Initialise.pp" "platform_osal.pp" "resourcemgr.pp" "src\Controller.pp" "src\DataTransfer.pp" "src\DisparitiesToSearch.pp" "src\Disparity.pp" "src\DisparityInline.pp" "src\ncc\NccCore.pp" "src\ncc\NccIntrinsics.pp" 
+	-$(RM) "Initialise.obj" "platform_osal.obj" "resourcemgr.obj" "src\Controller.obj" "src\DataTransfer.obj" "src\DisparitiesToSearch.obj" "src\Disparity.obj" "src\DisparityInline.obj" "src\reciprocal.obj" "src\ncc\NccCore.obj" "src\ncc\NccCoreLA.obj" "src\ncc\NccIntrinsics.obj" 
+	-$(RM) "src\reciprocal.pp" "src\ncc\NccCoreLA.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

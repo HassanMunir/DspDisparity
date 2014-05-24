@@ -44,7 +44,7 @@ int GetDisparitiesSortAndUnique(int* restrict out, int* restrict in)
 	{
 		for(y = 0; y < 8 - x; y++)
 		{
-			if(in[y] => in[y+1])
+			if(in[y] >= in[y+1])
 			{
 				temp = in[y+1];
 				in[y+1] = in[y];

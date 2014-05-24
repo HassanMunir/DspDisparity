@@ -10,20 +10,16 @@
 #include <xdc/runtime/Types.h>
 #include <xdc/runtime/Timestamp.h>
 
-extern double NccCoreLA(uint8_t* leftImage, uint8_t* rightImage, int iWinStart, int winY, int jWinStartTemplate, int jWinStartMatch, int winX, int width);
-extern float NccCore(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
-extern float NccCoreUnrolled(uint8_t* restrict leftImg, uint8_t* restrict rightImg, int iWinStart, int iWinEnd, int jWinStartTemplate, int jWinStartMatch, int jWinEndMatch);
-
 extern int GetDisparitiesUnique(int* out, int* in);
 extern int GetDisparitiesSortAndUnique(int* restrict out, int* restrict in);
+
+static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, uint8_t* leftImg, uint8_t* rightImg, int* disparitiesToSearch, int disparitiesToSearchLength);
 
 long long counter1 = 0, counter2 = 0, counter3 = 0;
 
 // i, y, v refer to rows
 // j, x, u refer to cols
-uint8_t* GetDisparityMap(StereoImage* stereoImage){
-
-	uint8_t* disparityMap = Memory_alloc(NULL,  (HEIGHT*WIDTH), 8, NULL);
+void GetDisparityMap(uint8_t* leftImg, uint8_t* rightImg, uint8_t* disparityMap){
 
 	uint8_t template[WIN_X * WIN_Y];
 
@@ -48,7 +44,7 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage){
 		jWinStart = j - J_SIDE;
 		jWinEnd = j + J_SIDE;
 
-		disparityMap[bottomLine * WIDTH + j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, fullDisp, MAX_DISP);
+		disparityMap[bottomLine * WIDTH + j] = GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, leftImg, rightImg, fullDisp, MAX_DISP);
 	}
 
 	//Iterate over the rows
@@ -88,17 +84,15 @@ uint8_t* GetDisparityMap(StereoImage* stereoImage){
 
 			count = GetDisparitiesSortAndUnique(disparitiesToSearchUnique, disparitiesToSearch);
 
-			disparityMap[i* WIDTH + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, stereoImage, disparitiesToSearchUnique,count);
+			disparityMap[i* WIDTH + j] =  GetBestMatch(iWinStart, iWinEnd, jWinStart, jWinEnd, template, leftImg, rightImg, disparitiesToSearchUnique,count);
 
 		}
 	}
 	printf("Counter1: %d\t Counter2: %d\n", counter1/counter3, counter2/counter3);
-	return disparityMap;
 }
 
 
-static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, StereoImage* stereoImage, int* disparitiesToSearch, int disparitiesToSearchLength)
-{
+static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int jWinEnd, uint8_t* template, uint8_t* leftImg, uint8_t* rightImg, int* disparitiesToSearch, int disparitiesToSearchLength){
 	int k,bestMatchSoFar;
 
 	//Max possible result of multiplying two pixels is 255*255 = 65025
@@ -131,8 +125,8 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 		uint32_t start = Timestamp_get32();
 
 		ncc = NccIntrinsics4(
-				stereoImage->Left,
-				stereoImage->Right,
+				leftImg,
+				rightImg,
 				iWinStart,
 				iWinEnd,
 				jWinStart,
@@ -141,8 +135,8 @@ static inline uint8_t GetBestMatch(int iWinStart, int iWinEnd,int jWinStart, int
 
 //
 //		ncc = NccCore(
-//						stereoImage->Left,
-//						stereoImage->Right,
+//						leftImg,
+//						rightImg,
 //						iWinStart,
 //						iWinEnd,
 //						jWinStart,
